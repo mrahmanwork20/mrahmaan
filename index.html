@@ -1,167 +1,935 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Rahman - Game Developer & IT Support</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#08090D',
+              card: '#11131C',
+              border: 'rgba(255, 255, 255, 0.08)',
+              gold: '#D4AF37',
+              goldHover: '#F3E5AB',
+              accent: '#E5C158'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background-color: #08090D; color: #E2E8F0; }
+    
+    .glass-card {
+      background: rgba(17, 19, 28, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(212, 175, 55, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(212, 175, 55, 0.15);
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F3E5AB 50%, #D4AF37 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-border-glow {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-gold selection:text-black">
 
-        <title>Portfolio website complete</title>
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="#" class="nav__logo">Rahman</a>
-                </div>
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-40 border-b border-brand-border bg-brand-dark/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" id="nav-logo" class="font-serif text-2xl font-bold tracking-wider gold-gradient-text">RAHMAN.</a>
+      
+      <div class="flex items-center gap-6">
+        <a href="#about" class="text-sm font-medium hover:text-brand-gold transition-colors hidden md:inline">Tentang</a>
+        <a href="#projects" class="text-sm font-medium hover:text-brand-gold transition-colors">Project</a>
+        <a href="#experience" class="text-sm font-medium hover:text-brand-gold transition-colors hidden md:inline">Pengalaman</a>
+        <a href="#contact" class="text-sm font-medium hover:text-brand-gold transition-colors">Kontak</a>
+        <button id="admin-toggle-btn" onclick="openAdminAuth()" class="text-xs px-4 py-2 rounded-full border border-brand-border hover:border-brand-gold text-gray-300 transition-all flex items-center gap-2">
+          <i class="fa-solid fa-lock text-brand-gold"></i> <span id="admin-btn-text">Admin Login</span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                        <li class="nav__item"><a href="#certificate" class="nav__link">certificate</a></li>
-                    </ul>
-                </div>
+  <!-- HERO SECTION WITH PROFILE PHOTO -->
+  <section class="pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+    
+    <!-- FOTO PROFIL -->
+    <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-brand-gold gold-border-glow mb-6 bg-brand-card flex-shrink-0">
+      <img id="hero-photo" src="" alt="Profile Photo" class="w-full h-full object-cover">
+    </div>
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+    <div id="hero-badge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-gold/30 bg-brand-gold/5 text-brand-gold text-xs font-semibold tracking-wide uppercase mb-6">
+      <!-- Dynamic -->
+    </div>
+    
+    <h1 class="text-3xl md:text-5xl font-serif font-bold tracking-tight max-w-4xl leading-tight">
+      <span id="hero-name"></span> <br><span id="hero-title" class="gold-gradient-text"></span>
+    </h1>
+    
+    <p id="hero-desc" class="mt-4 text-gray-400 text-base md:text-lg max-w-3xl leading-relaxed">
+      <!-- Dynamic -->
+    </p>
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Rahman</span><br></h1>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="#projects" class="px-7 py-3 rounded-full bg-brand-gold text-black font-semibold text-sm hover:bg-brand-goldHover transition-all gold-border-glow">
+        Lihat Portfolio Karya
+      </a>
+      <a id="hero-linkedin" href="#" target="_blank" class="px-7 py-3 rounded-full glass-card text-sm font-semibold hover:text-brand-gold transition-all flex items-center gap-2">
+        <i class="fa-brands fa-linkedin"></i> Profil LinkedIn
+      </a>
+    </div>
+  </section>
 
-                    <a href="#" class="button">Contact</a>
-                </div>
+  <!-- ADMIN CONTROL BAR -->
+  <div id="admin-bar" class="hidden max-w-7xl mx-auto px-6 mb-8">
+    <div class="p-4 rounded-xl border border-brand-gold/40 bg-brand-gold/10 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-user-shield text-brand-gold text-xl"></i>
+        <div>
+          <h4 class="font-bold text-sm text-brand-gold">Sesi Admin Aktif (Mode Edit)</h4>
+          <p class="text-xs text-gray-400">Anda dapat mengunggah file foto profil, project, dan sertifikat baru.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="openAdminPanel('hero')" class="px-4 py-2 rounded-lg bg-brand-gold text-black text-xs font-bold hover:bg-brand-goldHover transition-all">
+          <i class="fa-solid fa-pen-to-square mr-1"></i> Buka CMS Panel
+        </button>
+        <button onclick="logoutAdmin()" class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 text-xs font-bold hover:bg-red-500/30 transition-all">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
 
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/muhammad-rahman-4ba16321a/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://github.com/eemrahman" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                    <a href="https://www.instagram.com/_mrahmaan/" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-                    <a href="https://wa.me/62859106864010" class="home__social-icon"><i class='bx bxl-whatsapp' ></i></a>
-                </div>
+  <!-- ABOUT & EDUCATION SECTION -->
+  <section id="about" class="py-12 max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-xl font-serif font-bold text-white mb-4 gold-gradient-text">Profil Singkat</h3>
+        <p id="about-bio1" class="text-gray-300 text-sm leading-relaxed mb-4"></p>
+        <p id="about-bio2" class="text-gray-300 text-sm leading-relaxed"></p>
+      </div>
 
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-xl font-serif font-bold text-white mb-4 gold-gradient-text">Pendidikan Utama</h3>
+        <div class="border-l-2 border-brand-gold/50 pl-4">
+          <h4 id="edu-title" class="font-bold text-white"></h4>
+          <p id="edu-meta" class="text-xs text-brand-gold mt-1"></p>
+          <p class="text-xs text-gray-400 mt-2"><strong>Judul Skripsi:</strong> "<span id="edu-thesis"></span>"</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">About</h2>
+  <!-- PROJECTS SECTION (CLICKABLE CARDS) -->
+  <section id="projects" class="py-12 max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <h2 class="text-3xl font-serif font-bold gold-gradient-text">Featured Works & Projects</h2>
+        <p class="text-gray-400 text-sm mt-2">Klik pada kartu project untuk melihat detail lengkap dan visualisasi karya.</p>
+      </div>
+      <button id="add-proj-btn" onclick="openAdminPanel('projects')" class="hidden mt-4 md:mt-0 px-4 py-2 rounded-lg bg-brand-gold/20 text-brand-gold border border-brand-gold/40 text-xs font-bold hover:bg-brand-gold hover:text-black transition-all">
+        + Kelola / Tambah Project
+      </button>
+    </div>
 
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.png" alt="">
-                    </div>
-                    
-                    <div>
-                        <h2 class="about__subtitle">Muhammad Rahman</h2>
-                        <p class="about__text">A graduate of Universitas Teknokrat Indonesia majoring in Informatics with a GPA of 3.72 and a strong 
-                            interest in Game Development and Information Technology (IT). Experienced as an intern Programmer in QA Testing at Nusameta, 
-                            responsible for ensuring the quality and stability of digital products. Also worked as a Unity Programmer on an educational 
-                            game project developed for PT Bukit Asam Tbk. Skilled in collaborative teamwork with multidisciplinary teams and has a solid
-                            understanding of software development, information systems, and IT-based technology implementation.</p>           
-                    </div>                                   
-                </div>
-            </section>
+    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </section>
 
-            
+  <!-- EXPERIENCE & CERTIFICATIONS SECTION -->
+  <section id="experience" class="py-12 max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-serif font-bold gold-gradient-text mb-8">Pengalaman Kerja & Organisasi</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-brand-border pb-2">
+          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-briefcase text-brand-gold mr-2"></i>Pengalaman Kerja</h3>
+        </div>
+        <div id="exp-list" class="space-y-4"></div>
+      </div>
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">Work</h2>
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-brand-border pb-2">
+          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-award text-brand-gold mr-2"></i>Sertifikasi (Klik untuk preview)</h3>
+        </div>
+        <div id="certs-list" class="glass-card p-6 rounded-xl space-y-3"></div>
 
-                <div class="work__container bd-grid">
-                    <a href="https://drive.google.com/file/d/128jHeWroih6kYA4RD-umDbQKRD8ofQVZ/view?pli=1" class="work__img">
-                        <img src="assets/img/work7.jpg" alt="">
-                    </a>
-                    <a href="https://www.spatial.io/s/Teknokrat-Racing-Circuit-657533fb59d29d0853dca78a?share=7930475562745588531" class="work__img">
-                        <img src="assets/img/work8.jpg" alt="">
-                    </a>
-                    <a href="https://juarameta.github.io/" class="work__img">
-                        <img src="assets/img/work1.jpg" alt="">
-                    </a>
-                    <a href="https://eemrahman.github.io/Sanggar-Nuwo-Sikep/" class="work__img">
-                        <img src="assets/img/work2.jpg" alt="">
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/17mAFNc0OffldQ_3c2Ugo6HxvNN-Qi3uR?usp=sharing" class="work__img">
-                        <img src="assets/img/work3.jpg" alt="">
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1mhQCwdb12jdkqYpl0Us7C743vT8vNOf4?usp=drive_link" class="work__img">
-                        <img src="assets/img/work4.jpg" alt="">
-                    </a>
-                    <a href="https://www.spatial.io/s/SMA-Lab-School-UPI-66f56b1dc23d0d0c2a3d5302?share=2713573888761638795" class="work__img">
-                        <img src="assets/img/work5.jpg" alt="">
-                    </a>
-                    <a href="https://www.spatial.io/s/Metaverse-Universitas-Teknokrat-Indonesia-68259e59f734432bbfb0ad1e?share=647189754963369920" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                    </a>
-                </div>
-            </section>
+        <div class="flex items-center justify-between border-b border-brand-border pb-2 pt-4">
+          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-users text-brand-gold mr-2"></i>Organisasi</h3>
+        </div>
+        <div id="orgs-list" class="glass-card p-6 rounded-xl space-y-3"></div>
+      </div>
+    </div>
+  </section>
 
-                        <!--===== Certificate =====-->
-            <section class="certificate section" id="certificate">
-                <h2 class="section-title">Certificate</h2>
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-20 border-t border-brand-border mt-20">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-serif font-bold gold-gradient-text">Hubungi Saya</h2>
+      <p class="text-gray-400 mt-4">Terbuka untuk diskusi proyek, kerja sama, maupun peluang karir baru.</p>
+      
+      <div class="mt-8 flex flex-wrap justify-center gap-6">
+        <a id="contact-email" href="#" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
+          <i class="fa-regular fa-envelope text-brand-gold"></i> <span></span>
+        </a>
+        <a id="contact-phone" href="#" target="_blank" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-brand-gold"></i> <span></span>
+        </a>
+        <span id="contact-location" class="px-6 py-3 rounded-full glass-card text-sm font-medium text-gray-400 flex items-center gap-2">
+          <i class="fa-solid fa-location-dot text-brand-gold"></i> <span></span>
+        </span>
+      </div>
+    </div>
+  </section>
 
-                <div class="work__container bd-grid">
-                    <a href="https://juarameta.github.io/" class="work__img">
-                        <img src="assets/img/cert1.jpg" alt="">
-                    </a>
-                    <a href="https://eemrahman.github.io/Sanggar-Nuwo-Sikep/" class="work__img">
-                        <img src="assets/img/cert2.jpg" alt="">
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/17mAFNc0OffldQ_3c2Ugo6HxvNN-Qi3uR?usp=sharing" class="work__img">
-                        <img src="assets/img/cert3.jpg" alt="">
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1mhQCwdb12jdkqYpl0Us7C743vT8vNOf4?usp=drive_link" class="work__img">
-                        <img src="assets/img/cert4.jpg" alt="">
-                    </a>
-                    <a href="https://www.spatial.io/s/SMA-Lab-School-UPI-66f56b1dc23d0d0c2a3d5302?share=2713573888761638795" class="work__img">
-                        <img src="assets/img/cert5.jpg" alt="">
-                    </a>
-                    <a href="https://www.spatial.io/s/Metaverse-Universitas-Teknokrat-Indonesia-68259e59f734432bbfb0ad1e?share=647189754963369920" class="work__img">
-                        <img src="assets/img/cert6.jpg" alt="">
-                    </a>
-                </div>
-            </section>
+  <!-- MODAL: PROJECT DETAIL VIEW -->
+  <div id="project-detail-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center px-4">
+    <div class="glass-card max-w-2xl w-full rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div class="relative h-64 md:h-80 overflow-hidden bg-black/60">
+        <img id="modal-proj-img" src="" class="w-full h-full object-cover">
+        <button onclick="closeProjectDetail()" class="absolute top-4 right-4 bg-black/60 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <span id="modal-proj-cat" class="absolute bottom-4 left-4 bg-black/70 text-brand-gold text-xs font-semibold px-3 py-1 rounded-full border border-brand-gold/30"></span>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4">
+        <h3 id="modal-proj-title" class="font-serif font-bold text-2xl text-white"></h3>
+        <p id="modal-proj-desc" class="text-gray-300 text-sm leading-relaxed"></p>
+        
+        <div>
+          <h4 class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-2">Tech Stack / Teknologi</h4>
+          <div id="modal-proj-tech" class="flex flex-wrap gap-2"></div>
+        </div>
 
+        <div id="modal-proj-link-container" class="pt-2"></div>
+      </div>
+    </div>
+  </div>
 
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Muhammad Rahman</p>
-            <div class="footer__social">
-                <a href="https://www.instagram.com/_mrahmaan/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://www.linkedin.com/in/muhammad-rahman-4ba16321a/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
-                <a href="https://wa.me/628123456789" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
+  <!-- MODAL: CERTIFICATE IMAGE PREVIEW -->
+  <div id="cert-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center px-4" onclick="closeCertModal()">
+    <div class="max-w-3xl w-full p-2 relative" onclick="event.stopPropagation()">
+      <button onclick="closeCertModal()" class="absolute -top-10 right-0 text-white text-xl hover:text-brand-gold">
+        <i class="fa-solid fa-xmark"></i> Tutup
+      </button>
+      <img id="cert-modal-img" src="" class="w-full rounded-xl border border-brand-gold/40 shadow-2xl max-h-[80vh] object-contain mx-auto">
+      <p id="cert-modal-title" class="text-center text-sm text-brand-gold mt-3 font-semibold"></p>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN ADMIN -->
+  <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center px-4">
+    <div class="glass-card max-w-sm w-full p-6 rounded-2xl">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="font-serif font-bold text-lg gold-gradient-text">Verifikasi Admin</h3>
+        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="mb-4">
+          <label class="block text-xs font-medium text-gray-400 mb-2">Password Admin</label>
+          <input type="password" id="admin-pass-input" placeholder="Masukkan password" required class="w-full bg-black/50 border border-brand-border rounded-lg px-3 py-2 text-sm focus:border-brand-gold focus:outline-none text-white">
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-lg bg-brand-gold text-black font-bold text-sm hover:bg-brand-goldHover transition-all">
+          Masuk Admin
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN PANEL CMS -->
+  <div id="panel-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center px-4">
+    <div class="glass-card max-w-3xl w-full p-6 rounded-2xl max-h-[90vh] flex flex-col">
+      <div class="flex justify-between items-center mb-4 border-b border-brand-border pb-4">
+        <h3 class="font-serif font-bold text-xl gold-gradient-text"><i class="fa-solid fa-sliders mr-2"></i>Admin CMS Panel</h3>
+        <button onclick="closePanelModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- TABS -->
+      <div class="flex gap-2 border-b border-brand-border pb-3 overflow-x-auto text-xs">
+        <button onclick="switchTab('tab-hero')" class="tab-btn px-4 py-2 rounded-lg bg-brand-gold text-black font-bold" id="btn-tab-hero">Profil & Bio</button>
+        <button onclick="switchTab('tab-projects')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-projects">Kelola Project</button>
+        <button onclick="switchTab('tab-exp')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-exp">Pengalaman & Sertifikat</button>
+        <button onclick="switchTab('tab-contact')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-contact">Kontak</button>
+        <button onclick="switchTab('tab-security')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-security"><i class="fa-solid fa-key mr-1"></i>Keamanan</button>
+      </div>
+
+      <!-- TAB CONTENTS -->
+      <div class="overflow-y-auto py-4 space-y-4 text-xs">
+        
+        <!-- TAB 1: HERO & PROFILE PHOTO -->
+        <div id="tab-hero" class="tab-content space-y-4">
+          <div class="p-3 border border-brand-border rounded-xl space-y-3">
+            <h4 class="font-bold text-brand-gold">Foto Profil</h4>
+            <div>
+              <label class="block text-gray-400 mb-1">Upload File Foto Profil (PNG/JPG)</label>
+              <input type="file" id="upload-profile-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
             </div>
-            <p class="footer__copy">&#169; mrahmaan. All rigths reserved</p>
-        </footer>
+            <div>
+              <label class="block text-gray-400 mb-1">Atau Masukkan URL Foto Profil</label>
+              <input type="url" id="edit-hero-photo" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            </div>
+          </div>
 
+          <div>
+            <label class="block text-gray-400 mb-1">Badge Status (Hero Top)</label>
+            <input type="text" id="edit-hero-badge" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-gray-400 mb-1">Nama Lengkap</label>
+              <input type="text" id="edit-hero-name" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-gray-400 mb-1">Judul / Spesialisasi</label>
+              <input type="text" id="edit-hero-title" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+            </div>
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Deskripsi Singkat (Hero)</label>
+            <textarea id="edit-hero-desc" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Biografi Paragraf 1</label>
+            <textarea id="edit-about-bio1" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Biografi Paragraf 2</label>
+            <textarea id="edit-about-bio2" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
+          </div>
+          <button onclick="saveHeroBio()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Simpan Perubahan Profil & Bio</button>
+        </div>
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+        <!-- TAB 2: PROJECTS WITH FILE UPLOAD -->
+        <div id="tab-projects" class="tab-content hidden space-y-4">
+          <div class="p-4 border border-brand-gold/30 rounded-xl bg-brand-gold/5">
+            <h4 class="font-bold text-brand-gold mb-3 text-sm">+ Tambah Project Baru</h4>
+            <div class="space-y-3">
+              <input type="text" id="new-proj-title" placeholder="Judul Project" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+              <input type="text" id="new-proj-cat" placeholder="Kategori (misal: 3D Game / AR)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+              
+              <div>
+                <label class="block text-gray-400 mb-1">Upload File Gambar Project (Disarankan)</label>
+                <input type="file" id="upload-proj-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
+              </div>
+              <div>
+                <label class="block text-gray-400 mb-1">Atau Gunakan URL Gambar</label>
+                <input type="url" id="new-proj-img" placeholder="https://..." class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+              </div>
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+              <textarea id="new-proj-desc" placeholder="Deskripsi Lengkap Project" rows="3" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white"></textarea>
+              <input type="text" id="new-proj-tech" placeholder="Tech Stack (Pisahkan dengan koma)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+              <input type="url" id="new-proj-link" placeholder="Link Demo / GitHub (Opsional)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+              <button onclick="addProject()" class="w-full py-2 bg-brand-gold text-black font-bold rounded-lg">Simpan Project</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: EXPERIENCE, EDUCATION, CERTS -->
+        <div id="tab-exp" class="tab-content hidden space-y-4">
+          <div class="p-3 border border-brand-border rounded-xl space-y-2">
+            <h4 class="font-bold text-white">Data Pendidikan</h4>
+            <input type="text" id="edit-edu-title" placeholder="Gelar & Kampus" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <input type="text" id="edit-edu-meta" placeholder="Tahun & IPK" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <input type="text" id="edit-edu-thesis" placeholder="Judul Skripsi" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <button onclick="saveEdu()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Simpan Pendidikan</button>
+          </div>
+
+          <div class="p-3 border border-brand-border rounded-xl space-y-2">
+            <h4 class="font-bold text-white">+ Tambah Pengalaman Kerja</h4>
+            <input type="text" id="new-exp-title" placeholder="Posisi / Jabatan" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <input type="text" id="new-exp-company" placeholder="Nama Perusahaan & Kota" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <input type="text" id="new-exp-period" placeholder="Periode (misal: Nov 2025 - Aug 2026)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <textarea id="new-exp-desc" placeholder="Tugas Singkat" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white"></textarea>
+            <button onclick="addExperience()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Tambah Pengalaman</button>
+          </div>
+
+          <!-- ADD CERTIFICATION WITH IMAGE UPLOAD -->
+          <div class="p-3 border border-brand-border rounded-xl space-y-2">
+            <h4 class="font-bold text-white">+ Tambah Sertifikasi</h4>
+            <input type="text" id="new-cert-title" placeholder="Nama Sertifikasi" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            <input type="text" id="new-cert-issuer" placeholder="Penerbit & Tahun" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
+            
+            <div>
+              <label class="block text-gray-400 mb-1">Upload Bukti Sertifikat (Gambar/Foto)</label>
+              <input type="file" id="upload-cert-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
+            </div>
+            
+            <button onclick="addCert()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Tambah Sertifikasi</button>
+          </div>
+        </div>
+
+        <!-- TAB 4: CONTACT -->
+        <div id="tab-contact" class="tab-content hidden space-y-4">
+          <div>
+            <label class="block text-gray-400 mb-1">Email</label>
+            <input type="email" id="edit-contact-email" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Nomor HP / WhatsApp</label>
+            <input type="text" id="edit-contact-phone" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">Lokasi Domisili</label>
+            <input type="text" id="edit-contact-loc" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+          </div>
+          <div>
+            <label class="block text-gray-400 mb-1">URL LinkedIn</label>
+            <input type="url" id="edit-contact-linkedin" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+          </div>
+          <button onclick="saveContact()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Simpan Kontak</button>
+        </div>
+
+        <!-- TAB 5: SECURITY -->
+        <div id="tab-security" class="tab-content hidden space-y-4">
+          <div class="p-4 border border-brand-border rounded-xl space-y-3">
+            <h4 class="font-bold text-white text-sm"><i class="fa-solid fa-key text-brand-gold mr-1"></i> Ubah Password Admin</h4>
+            <div>
+              <label class="block text-gray-400 mb-1">Password Lama</label>
+              <input type="password" id="pass-old" placeholder="Masukkan password lama" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-gray-400 mb-1">Password Baru</label>
+              <input type="password" id="pass-new" placeholder="Masukkan password baru" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+            </div>
+            <div>
+              <label class="block text-gray-400 mb-1">Konfirmasi Password Baru</label>
+              <input type="password" id="pass-confirm" placeholder="Ulangi password baru" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
+            </div>
+            <button onclick="changeAdminPassword()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Update Password Sekarang</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC (SECURITY, UPLOAD FILE, DYNAMIC CMS) -->
+  <script>
+    // Utility: XSS Sanitizer
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Utility: Convert File to Base64
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+      });
+    }
+
+    // SHA-256 Crypto API
+    async function hashString(str) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(str);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Initial Data
+    const initialSiteData = {
+      hero: {
+        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+        badge: 'S1 Informatika (IPK 3.72) • Unity & Network Security',
+        name: 'Muhammad Rahman',
+        title: 'Game Developer & IT Security Specialist',
+        desc: 'Lulusan S1 Informatika Universitas Teknokrat Indonesia dengan keahlian dalam pengembangan Game 3D/AR interaktif menggunakan Unity Engine serta pengelolaan keamanan jaringan Fortinet.',
+        linkedin: 'https://www.linkedin.com/in/muhammad-rahman-4ba16321a/'
+      },
+      about: {
+        bio1: 'Memiliki keahlian unggul dalam gameplay programming, UI implementation, debugging, dan optimasi performa game pada platform Android & PC.',
+        bio2: 'Berpengalaman pula dalam pengujian kualitas perangkat lunak (QA Testing) di Nusameta serta manajemen infrastruktur jaringan & firewall Fortinet di PT Info Solusindo Data Utama.',
+        eduTitle: 'S1 Informatika - Universitas Teknokrat Indonesia',
+        eduMeta: 'Sep 2021 - Mei 2025 • IPK: 3.72 / 4.00',
+        thesis: 'Metatekno: Implementasi Gamification pada Metaverse Teknokrat Menggunakan Unity Engine'
+      },
+      contact: {
+        email: 'mrahman.work20@gmail.com',
+        phone: '+62 821-5119-9244',
+        waLink: 'https://wa.me/6282151199244',
+        location: 'Bandar Lampung, Indonesia'
+      },
+      projects: [
+        {
+          id: '1',
+          title: 'Sandi Aksara 3D Game',
+          category: '3D Educational Game',
+          image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+          description: 'Game edukasi 3D interaktif pengenalan aksara Jawa. Dilengkapi Quest System, Trace Line & Drag-and-Drop Puzzle, serta Save Progress dengan PlayerPrefs.',
+          tech: ['Unity 3D', 'C#', 'UI Architecture'],
+          link: 'https://github.com'
+        },
+        {
+          id: '2',
+          title: 'Ido & Adi: Penjaga Pesisir',
+          category: 'Game Dev (PT Bukit Asam Tbk)',
+          image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
+          description: 'Aplikasi game edukasi konservasi mangrove hasil kolaborasi CoE Metaverse dengan PT Bukit Asam Tbk.',
+          tech: ['Unity', 'C#', 'Android Optimization'],
+          link: ''
+        },
+        {
+          id: '3',
+          title: 'Sepakbola AR App',
+          category: 'Augmented Reality',
+          image: 'https://images.unsplash.com/photo-1579952318891-2147743322db?auto=format&fit=crop&w=800&q=80',
+          description: 'Aplikasi AR interaktif untuk mengeksplorasi elemen 3D sepakbola melalui kamera smartphone.',
+          tech: ['Unity', 'Vuforia SDK', 'C#'],
+          link: ''
+        }
+      ],
+      experiences: [
+        {
+          id: 'e1',
+          period: 'Jun 2026 - Jul 2026',
+          title: 'Game Developer',
+          company: 'Sandi Aksara - Bandar Lampung',
+          desc: 'Mengembangkan game edukasi 3D pengenalan Aksara Jawa menggunakan Unity & C#, mengimplementasikan Quest System, Puzzle System, serta save progress.'
+        },
+        {
+          id: 'e2',
+          period: 'Nov 2025 - Agu 2026',
+          title: 'EOS IT Network Security',
+          company: 'PT Info Solusindo Data Utama (Contract) - Kanwil BRI Lampung',
+          desc: 'Mengelola perangkat keras keamanan Fortinet, konfigurasi firewall, VPN, serta menjaga stabilitas operasional jaringan.'
+        },
+        {
+          id: 'e3',
+          period: 'Des 2024 - Apr 2025',
+          title: 'Programmer Intern (QA Testing)',
+          company: 'Nusameta (PT Metaverse Indonesia Makmur)',
+          desc: 'Melakukan pengujian manual fitur Visual Script Nodes di platform NusaStudio, identifikasi bug, serta pembuatan dokumentasi pengujian.'
+        }
+      ],
+      certifications: [
+        { id: 'c1', title: 'Fortinet Certified Associate in Cybersecurity', issuer: 'Fortinet Training Institute (Dec 2025 - Dec 2027)', image: 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=800&q=80' },
+        { id: 'c2', title: 'Senior Game Developer', issuer: 'Universitas Teknokrat Indonesia (Juli 2024)', image: '' },
+        { id: 'c3', title: 'Junior AR/VR Developer', issuer: 'Universitas Teknokrat Indonesia (Februari 2024)', image: '' }
+      ],
+      organizations: [
+        { id: 'o1', title: 'Wakil Ketua - Pusat Unggulan Metaverse (JuaraMeta)', period: 'Juli 2024 - Mei 2025 • Universitas Teknokrat Indonesia' },
+        { id: 'o2', title: 'Wakil Ketua - HIMA Informatika', period: 'Jan 2024 - Feb 2025 • Universitas Teknokrat Indonesia' }
+      ]
+    };
+
+    let siteData = {};
+    let isAdmin = false;
+    let failedAttempts = 0;
+    let lockUntil = 0;
+    const SESSION_DURATION = 2 * 60 * 60 * 1000;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (!localStorage.getItem('rahman_admin_hash')) {
+        const initialHash = await hashString("r#hm#n29");
+        localStorage.setItem('rahman_admin_hash', initialHash);
+      }
+
+      const saved = localStorage.getItem('rahman_cms_full_data');
+      if (saved) {
+        siteData = JSON.parse(saved);
+      } else {
+        siteData = initialSiteData;
+        saveData();
+      }
+
+      checkAdminStatus();
+      renderAll();
+    });
+
+    function saveData() {
+      localStorage.setItem('rahman_cms_full_data', JSON.stringify(siteData));
+    }
+
+    async function createSessionToken() {
+      const expireAt = Date.now() + SESSION_DURATION;
+      const currentHash = localStorage.getItem('rahman_admin_hash');
+      localStorage.setItem('rahman_admin_session_token', JSON.stringify({ expireAt, hash: currentHash }));
+    }
+
+    function isSessionValid() {
+      const tokenStr = localStorage.getItem('rahman_admin_session_token');
+      if (!tokenStr) return false;
+      try {
+        const token = JSON.parse(tokenStr);
+        if (Date.now() > token.expireAt) { logoutAdmin(); return false; }
+        return token.hash === localStorage.getItem('rahman_admin_hash');
+      } catch (e) { return false; }
+    }
+
+    // Render Functions
+    function renderAll() {
+      // Photo Profile & Hero
+      document.getElementById('hero-photo').src = siteData.hero.photo || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
+      document.getElementById('nav-logo').innerText = escapeHTML(siteData.hero.name.split(' ')[1] ? siteData.hero.name.split(' ')[1].toUpperCase() + '.' : siteData.hero.name.toUpperCase() + '.');
+      document.getElementById('hero-badge').innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span> ${escapeHTML(siteData.hero.badge)}`;
+      document.getElementById('hero-name').innerText = siteData.hero.name;
+      document.getElementById('hero-title').innerText = siteData.hero.title;
+      document.getElementById('hero-desc').innerText = siteData.hero.desc;
+      document.getElementById('hero-linkedin').href = escapeHTML(siteData.hero.linkedin);
+
+      // About
+      document.getElementById('about-bio1').innerText = siteData.about.bio1;
+      document.getElementById('about-bio2').innerText = siteData.about.bio2;
+      document.getElementById('edu-title').innerText = siteData.about.eduTitle;
+      document.getElementById('edu-meta').innerText = siteData.about.eduMeta;
+      document.getElementById('edu-thesis').innerText = siteData.about.thesis;
+
+      // Contact
+      document.getElementById('contact-email').querySelector('span').innerText = siteData.contact.email;
+      document.getElementById('contact-email').href = `mailto:${escapeHTML(siteData.contact.email)}`;
+      document.getElementById('contact-phone').querySelector('span').innerText = siteData.contact.phone;
+      document.getElementById('contact-phone').href = escapeHTML(siteData.contact.waLink);
+      document.getElementById('contact-location').querySelector('span').innerText = siteData.contact.location;
+
+      // Clickable Projects Grid
+      const projGrid = document.getElementById('projects-grid');
+      projGrid.innerHTML = siteData.projects.map(p => `
+        <div onclick="openProjectDetail('${p.id}')" class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <span class="absolute top-3 left-3 bg-black/70 text-brand-gold text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full border border-brand-gold/30">${escapeHTML(p.category)}</span>
+              ${isAdmin ? `<button onclick="event.stopPropagation(); deleteProject('${p.id}')" class="absolute top-3 right-3 bg-red-600/80 text-white p-2 rounded-full hover:bg-red-600 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
+            </div>
+            <div class="p-6">
+              <h3 class="font-serif font-bold text-xl text-white group-hover:text-brand-gold transition-colors">${escapeHTML(p.title)}</h3>
+              <p class="text-gray-400 text-xs mt-2 leading-relaxed line-clamp-3">${escapeHTML(p.description)}</p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0">
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              ${p.tech.map(t => `<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded">${escapeHTML(t)}</span>`).join('')}
+            </div>
+            <span class="text-xs font-semibold text-brand-gold flex items-center gap-1">
+              Buka Detail Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </span>
+          </div>
+        </div>
+      `).join('');
+
+      // Experiences
+      const expList = document.getElementById('exp-list');
+      expList.innerHTML = siteData.experiences.map(e => `
+        <div class="glass-card p-6 rounded-xl relative">
+          ${isAdmin ? `<button onclick="deleteExp('${e.id}')" class="absolute top-3 right-3 text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
+          <span class="text-[10px] bg-brand-gold/10 text-brand-gold px-2.5 py-1 rounded-full font-semibold">${escapeHTML(e.period)}</span>
+          <h4 class="font-bold text-white mt-2">${escapeHTML(e.title)}</h4>
+          <p class="text-xs text-gray-400">${escapeHTML(e.company)}</p>
+          <p class="text-xs text-gray-300 mt-2 leading-relaxed">${escapeHTML(e.desc)}</p>
+        </div>
+      `).join('');
+
+      // Certifications
+      const certsList = document.getElementById('certs-list');
+      certsList.innerHTML = siteData.certifications.map(c => `
+        <div class="flex items-start justify-between gap-3 p-2 rounded-lg ${c.image ? 'hover:bg-white/5 cursor-pointer' : ''}" onclick="${c.image ? `openCertModal('${c.id}')` : ''}">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-certificate text-brand-gold mt-1"></i>
+            <div>
+              <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                ${escapeHTML(c.title)}
+                ${c.image ? '<i class="fa-solid fa-image text-xs text-brand-gold" title="Ada bukti sertifikat"></i>' : ''}
+              </h5>
+              <p class="text-xs text-gray-400">${escapeHTML(c.issuer)}</p>
+            </div>
+          </div>
+          ${isAdmin ? `<button onclick="event.stopPropagation(); deleteCert('${c.id}')" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
+        </div>
+      `).join('');
+
+      // Organizations
+      const orgsList = document.getElementById('orgs-list');
+      orgsList.innerHTML = siteData.organizations.map(o => `
+        <div>
+          <h5 class="text-sm font-bold text-white">${escapeHTML(o.title)}</h5>
+          <p class="text-xs text-gray-400">${escapeHTML(o.period)}</p>
+        </div>
+      `).join('');
+    }
+
+    // Modal Project Detail
+    function openProjectDetail(id) {
+      const proj = siteData.projects.find(p => p.id === id);
+      if (!proj) return;
+
+      document.getElementById('modal-proj-img').src = proj.image;
+      document.getElementById('modal-proj-cat').innerText = proj.category;
+      document.getElementById('modal-proj-title').innerText = proj.title;
+      document.getElementById('modal-proj-desc').innerText = proj.description;
+      
+      const techContainer = document.getElementById('modal-proj-tech');
+      techContainer.innerHTML = proj.tech.map(t => `<span class="bg-white/10 border border-white/20 text-white text-xs px-3 py-1 rounded-full">${escapeHTML(t)}</span>`).join('');
+
+      const linkContainer = document.getElementById('modal-proj-link-container');
+      if (proj.link) {
+        linkContainer.innerHTML = `<a href="${escapeHTML(proj.link)}" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-gold text-black font-bold text-xs hover:bg-brand-goldHover transition-all">Buka Demo / Link Repository <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+      } else {
+        linkContainer.innerHTML = `<span class="text-xs text-gray-500 italic">Dokumentasi / Repository Internal</span>`;
+      }
+
+      document.getElementById('project-detail-modal').classList.remove('hidden');
+    }
+
+    function closeProjectDetail() {
+      document.getElementById('project-detail-modal').classList.add('hidden');
+    }
+
+    // Modal Certificate Preview
+    function openCertModal(id) {
+      const cert = siteData.certifications.find(c => c.id === id);
+      if (!cert || !cert.image) return;
+
+      document.getElementById('cert-modal-img').src = cert.image;
+      document.getElementById('cert-modal-title').innerText = cert.title;
+      document.getElementById('cert-modal').classList.remove('hidden');
+    }
+
+    function closeCertModal() {
+      document.getElementById('cert-modal').classList.add('hidden');
+    }
+
+    // Admin Security & Auth
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      if (Date.now() < lockUntil) {
+        alert('Terlalu banyak percoban gagal. Silakan tunggu.');
+        return;
+      }
+
+      const inputPass = document.getElementById('admin-pass-input').value;
+      const inputHash = await hashString(inputPass);
+
+      if (inputHash === localStorage.getItem('rahman_admin_hash')) {
+        failedAttempts = 0;
+        isAdmin = true;
+        await createSessionToken();
+        checkAdminStatus();
+        closeAuthModal();
+        document.getElementById('admin-pass-input').value = '';
+        renderAll();
+      } else {
+        failedAttempts++;
+        if (failedAttempts >= 5) {
+          lockUntil = Date.now() + 30000;
+          alert('Terkunci 30 detik.');
+        } else alert(`Password Salah! (Sisa: ${5 - failedAttempts})`);
+      }
+    }
+
+    function checkAdminStatus() {
+      isAdmin = isSessionValid();
+      document.getElementById('admin-bar').classList.toggle('hidden', !isAdmin);
+      document.getElementById('add-proj-btn').classList.toggle('hidden', !isAdmin);
+      document.getElementById('admin-btn-text').innerText = isAdmin ? 'Logout Admin' : 'Admin Login';
+    }
+
+    function logoutAdmin() {
+      isAdmin = false;
+      localStorage.removeItem('rahman_admin_session_token');
+      checkAdminStatus();
+      renderAll();
+    }
+
+    function openAdminAuth() {
+      if (isAdmin) logoutAdmin();
+      else document.getElementById('auth-modal').classList.remove('hidden');
+    }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+
+    // CMS Panel Controls
+    function openAdminPanel(tab) {
+      document.getElementById('edit-hero-photo').value = siteData.hero.photo || '';
+      document.getElementById('edit-hero-badge').value = siteData.hero.badge;
+      document.getElementById('edit-hero-name').value = siteData.hero.name;
+      document.getElementById('edit-hero-title').value = siteData.hero.title;
+      document.getElementById('edit-hero-desc').value = siteData.hero.desc;
+      document.getElementById('edit-about-bio1').value = siteData.about.bio1;
+      document.getElementById('edit-about-bio2').value = siteData.about.bio2;
+
+      document.getElementById('edit-edu-title').value = siteData.about.eduTitle;
+      document.getElementById('edit-edu-meta').value = siteData.about.eduMeta;
+      document.getElementById('edit-edu-thesis').value = siteData.about.thesis;
+
+      document.getElementById('edit-contact-email').value = siteData.contact.email;
+      document.getElementById('edit-contact-phone').value = siteData.contact.phone;
+      document.getElementById('edit-contact-loc').value = siteData.contact.location;
+      document.getElementById('edit-contact-linkedin').value = siteData.hero.linkedin;
+
+      switchTab('tab-' + tab);
+      document.getElementById('panel-modal').classList.remove('hidden');
+    }
+
+    function closePanelModal() { document.getElementById('panel-modal').classList.add('hidden'); }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(el => {
+        el.classList.remove('bg-brand-gold', 'text-black', 'font-bold');
+        el.classList.add('bg-white/5', 'text-gray-300');
+      });
+
+      document.getElementById(tabId).classList.remove('hidden');
+      const btn = document.getElementById('btn-' + tabId);
+      if (btn) {
+        btn.classList.add('bg-brand-gold', 'text-black', 'font-bold');
+        btn.classList.remove('bg-white/5', 'text-gray-300');
+      }
+    }
+
+    // CMS Save Handlers with File Upload Support
+    async function saveHeroBio() {
+      const profileFile = document.getElementById('upload-profile-file').files[0];
+      if (profileFile) {
+        siteData.hero.photo = await fileToBase64(profileFile);
+      } else if (document.getElementById('edit-hero-photo').value) {
+        siteData.hero.photo = document.getElementById('edit-hero-photo').value;
+      }
+
+      siteData.hero.badge = document.getElementById('edit-hero-badge').value;
+      siteData.hero.name = document.getElementById('edit-hero-name').value;
+      siteData.hero.title = document.getElementById('edit-hero-title').value;
+      siteData.hero.desc = document.getElementById('edit-hero-desc').value;
+      siteData.about.bio1 = document.getElementById('edit-about-bio1').value;
+      siteData.about.bio2 = document.getElementById('edit-about-bio2').value;
+
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    async function addProject() {
+      const projFile = document.getElementById('upload-proj-file').files[0];
+      let imageUrl = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
+
+      if (projFile) {
+        imageUrl = await fileToBase64(projFile);
+      } else if (document.getElementById('new-proj-img').value) {
+        imageUrl = document.getElementById('new-proj-img').value;
+      }
+
+      siteData.projects.unshift({
+        id: Date.now().toString(),
+        title: document.getElementById('new-proj-title').value,
+        category: document.getElementById('new-proj-cat').value,
+        image: imageUrl,
+        description: document.getElementById('new-proj-desc').value,
+        tech: document.getElementById('new-proj-tech').value.split(','),
+        link: document.getElementById('new-proj-link').value
+      });
+
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    async function addCert() {
+      const certFile = document.getElementById('upload-cert-file').files[0];
+      let certImg = '';
+
+      if (certFile) {
+        certImg = await fileToBase64(certFile);
+      }
+
+      siteData.certifications.unshift({
+        id: Date.now().toString(),
+        title: document.getElementById('new-cert-title').value,
+        issuer: document.getElementById('new-cert-issuer').value,
+        image: certImg
+      });
+
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    function saveEdu() {
+      siteData.about.eduTitle = document.getElementById('edit-edu-title').value;
+      siteData.about.eduMeta = document.getElementById('edit-edu-meta').value;
+      siteData.about.thesis = document.getElementById('edit-edu-thesis').value;
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    function saveContact() {
+      siteData.contact.email = document.getElementById('edit-contact-email').value;
+      siteData.contact.phone = document.getElementById('edit-contact-phone').value;
+      siteData.contact.waLink = `https://wa.me/${document.getElementById('edit-contact-phone').value.replace(/[^0-9]/g, '')}`;
+      siteData.contact.location = document.getElementById('edit-contact-loc').value;
+      siteData.hero.linkedin = document.getElementById('edit-contact-linkedin').value;
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    function addExperience() {
+      siteData.experiences.unshift({
+        id: Date.now().toString(),
+        title: document.getElementById('new-exp-title').value,
+        company: document.getElementById('new-exp-company').value,
+        period: document.getElementById('new-exp-period').value,
+        desc: document.getElementById('new-exp-desc').value
+      });
+      saveData(); renderAll(); closePanelModal();
+    }
+
+    function deleteProject(id) {
+      if (confirm('Hapus project ini?')) { siteData.projects = siteData.projects.filter(p => p.id !== id); saveData(); renderAll(); }
+    }
+    function deleteExp(id) {
+      if (confirm('Hapus pengalaman ini?')) { siteData.experiences = siteData.experiences.filter(e => e.id !== id); saveData(); renderAll(); }
+    }
+    function deleteCert(id) {
+      if (confirm('Hapus sertifikasi ini?')) { siteData.certifications = siteData.certifications.filter(c => c.id !== id); saveData(); renderAll(); }
+    }
+
+    async function changeAdminPassword() {
+      const oldP = document.getElementById('pass-old').value;
+      const newP = document.getElementById('pass-new').value;
+      const confirmP = document.getElementById('pass-confirm').value;
+
+      const oldHash = await hashString(oldP);
+      if (oldHash !== localStorage.getItem('rahman_admin_hash')) { alert('Password Lama Salah!'); return; }
+      if (newP.length < 6) { alert('Password minimal 6 karakter!'); return; }
+      if (newP !== confirmP) { alert('Konfirmasi password tidak cocok!'); return; }
+
+      const newHash = await hashString(newP);
+      localStorage.setItem('rahman_admin_hash', newHash);
+      await createSessionToken();
+      alert('Password Admin Berhasil Diperbarui!');
+      closePanelModal();
+    }
+  </script>
+</body>
 </html>
-
-
