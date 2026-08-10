@@ -565,6 +565,36 @@
         localStorage.setItem('rahman_admin_hash', initialHash);
       }
 
+      try {
+        const res = await fetch('/api/site-data');
+        if (res.ok) {
+          const dbData = await res.json();
+          siteData = {
+            hero: dbData.hero || initialSiteData.hero,
+            about: dbData.about || initialSiteData.about,
+            contact: dbData.contact || initialSiteData.contact,
+            projects: dbData.projects || initialSiteData.projects,
+            experiences: dbData.experiences || initialSiteData.experiences,
+            certifications: dbData.certifications || initialSiteData.certifications,
+            organizations: dbData.organizations || initialSiteData.organizations
+          };
+          if (dbData.adminPasswordHash) {
+            localStorage.setItem('rahman_admin_hash', dbData.adminPasswordHash);
+          }
+          saveData();
+        } else {
+          loadLocalData();
+        }
+      } catch (err) {
+        console.warn('Database fetch failed, using local storage fallback', err);
+        loadLocalData();
+      }
+
+      checkAdminStatus();
+      renderAll();
+    });
+
+    function loadLocalData() {
       const saved = localStorage.getItem('rahman_cms_full_data');
       if (saved) {
         siteData = JSON.parse(saved);
@@ -572,10 +602,7 @@
         siteData = initialSiteData;
         saveData();
       }
-
-      checkAdminStatus();
-      renderAll();
-    });
+    }
 
     function saveData() {
       localStorage.setItem('rahman_cms_full_data', JSON.stringify(siteData));
@@ -817,7 +844,7 @@
       }
     }
 
-    // CMS Save Handlers with File Upload Support
+    // CMS Save Handlers with File Upload Support & Netlify DB Integration
     async function saveHeroBio() {
       const profileFile = document.getElementById('upload-profile-file').files[0];
       if (profileFile) {
@@ -833,7 +860,24 @@
       siteData.about.bio1 = document.getElementById('edit-about-bio1').value;
       siteData.about.bio2 = document.getElementById('edit-about-bio2').value;
 
-      saveData(); renderAll(); closePanelModal();
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'saveHeroBio',
+          photo: siteData.hero.photo,
+          badge: siteData.hero.badge,
+          name: siteData.hero.name,
+          title: siteData.hero.title,
+          desc: siteData.hero.desc,
+          bio1: siteData.about.bio1,
+          bio2: siteData.about.bio2
+        })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     async function addProject() {
@@ -846,17 +890,26 @@
         imageUrl = document.getElementById('new-proj-img').value;
       }
 
-      siteData.projects.unshift({
+      const newProj = {
         id: Date.now().toString(),
         title: document.getElementById('new-proj-title').value,
         category: document.getElementById('new-proj-cat').value,
         image: imageUrl,
         description: document.getElementById('new-proj-desc').value,
-        tech: document.getElementById('new-proj-tech').value.split(','),
+        tech: document.getElementById('new-proj-tech').value.split(',').map(s => s.trim()).filter(Boolean),
         link: document.getElementById('new-proj-link').value
-      });
+      };
 
-      saveData(); renderAll(); closePanelModal();
+      siteData.projects.unshift(newProj);
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'addProject', project: newProj })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     async function addCert() {
@@ -867,21 +920,43 @@
         certImg = await fileToBase64(certFile);
       }
 
-      siteData.certifications.unshift({
+      const newCert = {
         id: Date.now().toString(),
         title: document.getElementById('new-cert-title').value,
         issuer: document.getElementById('new-cert-issuer').value,
         image: certImg
-      });
+      };
 
-      saveData(); renderAll(); closePanelModal();
+      siteData.certifications.unshift(newCert);
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'addCert', certification: newCert })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     function saveEdu() {
       siteData.about.eduTitle = document.getElementById('edit-edu-title').value;
       siteData.about.eduMeta = document.getElementById('edit-edu-meta').value;
       siteData.about.thesis = document.getElementById('edit-edu-thesis').value;
-      saveData(); renderAll(); closePanelModal();
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'saveEdu',
+          eduTitle: siteData.about.eduTitle,
+          eduMeta: siteData.about.eduMeta,
+          thesis: siteData.about.thesis
+        })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     function saveContact() {
@@ -890,28 +965,80 @@
       siteData.contact.waLink = `https://wa.me/${document.getElementById('edit-contact-phone').value.replace(/[^0-9]/g, '')}`;
       siteData.contact.location = document.getElementById('edit-contact-loc').value;
       siteData.hero.linkedin = document.getElementById('edit-contact-linkedin').value;
-      saveData(); renderAll(); closePanelModal();
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'saveContact',
+          email: siteData.contact.email,
+          phone: siteData.contact.phone,
+          waLink: siteData.contact.waLink,
+          location: siteData.contact.location,
+          linkedin: siteData.hero.linkedin
+        })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     function addExperience() {
-      siteData.experiences.unshift({
+      const newExp = {
         id: Date.now().toString(),
         title: document.getElementById('new-exp-title').value,
         company: document.getElementById('new-exp-company').value,
         period: document.getElementById('new-exp-period').value,
         desc: document.getElementById('new-exp-desc').value
-      });
-      saveData(); renderAll(); closePanelModal();
+      };
+
+      siteData.experiences.unshift(newExp);
+      saveData();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'addExperience', experience: newExp })
+      }).catch(e => console.error(e));
+
+      renderAll(); closePanelModal();
     }
 
     function deleteProject(id) {
-      if (confirm('Hapus project ini?')) { siteData.projects = siteData.projects.filter(p => p.id !== id); saveData(); renderAll(); }
+      if (confirm('Hapus project ini?')) {
+        siteData.projects = siteData.projects.filter(p => p.id !== id);
+        saveData();
+        fetch('/api/site-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'deleteProject', id })
+        }).catch(e => console.error(e));
+        renderAll();
+      }
     }
     function deleteExp(id) {
-      if (confirm('Hapus pengalaman ini?')) { siteData.experiences = siteData.experiences.filter(e => e.id !== id); saveData(); renderAll(); }
+      if (confirm('Hapus pengalaman ini?')) {
+        siteData.experiences = siteData.experiences.filter(e => e.id !== id);
+        saveData();
+        fetch('/api/site-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'deleteExperience', id })
+        }).catch(e => console.error(e));
+        renderAll();
+      }
     }
     function deleteCert(id) {
-      if (confirm('Hapus sertifikasi ini?')) { siteData.certifications = siteData.certifications.filter(c => c.id !== id); saveData(); renderAll(); }
+      if (confirm('Hapus sertifikasi ini?')) {
+        siteData.certifications = siteData.certifications.filter(c => c.id !== id);
+        saveData();
+        fetch('/api/site-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'deleteCert', id })
+        }).catch(e => console.error(e));
+        renderAll();
+      }
     }
 
     async function changeAdminPassword() {
@@ -927,6 +1054,13 @@
       const newHash = await hashString(newP);
       localStorage.setItem('rahman_admin_hash', newHash);
       await createSessionToken();
+
+      fetch('/api/site-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'changeAdminPassword', passwordHash: newHash })
+      }).catch(e => console.error(e));
+
       alert('Password Admin Berhasil Diperbarui!');
       closePanelModal();
     }
