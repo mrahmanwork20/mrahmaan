@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muhammad Rahman - Game Developer & IT Support</title>
+  <title>Muhammad Rahman - Game Developer & Network Security Portfolio</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -68,130 +68,114 @@
   <!-- NAVBAR -->
   <nav class="fixed top-0 w-full z-40 border-b border-brand-border bg-brand-dark/80 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" id="nav-logo" class="font-serif text-2xl font-bold tracking-wider gold-gradient-text">RAHMAN.</a>
+      <a href="#" class="font-serif text-2xl font-bold tracking-wider gold-gradient-text">RAHMAN.</a>
       
       <div class="flex items-center gap-6">
         <a href="#about" class="text-sm font-medium hover:text-brand-gold transition-colors hidden md:inline">Tentang</a>
         <a href="#projects" class="text-sm font-medium hover:text-brand-gold transition-colors">Project</a>
         <a href="#experience" class="text-sm font-medium hover:text-brand-gold transition-colors hidden md:inline">Pengalaman</a>
+        <a href="#certifications" class="text-sm font-medium hover:text-brand-gold transition-colors">Sertifikasi</a>
         <a href="#contact" class="text-sm font-medium hover:text-brand-gold transition-colors">Kontak</a>
-        <button id="admin-toggle-btn" onclick="openAdminAuth()" class="text-xs px-4 py-2 rounded-full border border-brand-border hover:border-brand-gold text-gray-300 transition-all flex items-center gap-2">
-          <i class="fa-solid fa-lock text-brand-gold"></i> <span id="admin-btn-text">Admin Login</span>
-        </button>
       </div>
     </div>
   </nav>
 
   <!-- HERO SECTION WITH PROFILE PHOTO -->
   <section class="pt-32 pb-16 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
-    
     <!-- FOTO PROFIL -->
     <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-2 border-brand-gold gold-border-glow mb-6 bg-brand-card flex-shrink-0">
-      <img id="hero-photo" src="" alt="Profile Photo" class="w-full h-full object-cover">
+      <img src="assets/profile.jpg" alt="Muhammad Rahman" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'">
     </div>
 
-    <div id="hero-badge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-gold/30 bg-brand-gold/5 text-brand-gold text-xs font-semibold tracking-wide uppercase mb-6">
-      <!-- Dynamic -->
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-gold/30 bg-brand-gold/5 text-brand-gold text-xs font-semibold tracking-wide uppercase mb-6">
+      <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+      S1 Informatika (IPK 3.72) • Unity Programmer & QA Testing
     </div>
     
     <h1 class="text-3xl md:text-5xl font-serif font-bold tracking-tight max-w-4xl leading-tight">
-      <span id="hero-name"></span> <br><span id="hero-title" class="gold-gradient-text"></span>
+      Muhammad Rahman <br><span class="gold-gradient-text">Game Developer & IT Security Specialist</span>
     </h1>
     
-    <p id="hero-desc" class="mt-4 text-gray-400 text-base md:text-lg max-w-3xl leading-relaxed">
-      <!-- Dynamic -->
+    <p class="mt-4 text-gray-400 text-base md:text-lg max-w-3xl leading-relaxed">
+      Lulusan S1 Informatika Universitas Teknokrat Indonesia. Berpengalaman sebagai Unity Programmer dalam mengembangkan Game 3D/AR serta pengalaman QA Testing dan pengelolaan keamanan jaringan Fortinet.
     </p>
 
     <div class="mt-8 flex flex-wrap justify-center gap-4">
       <a href="#projects" class="px-7 py-3 rounded-full bg-brand-gold text-black font-semibold text-sm hover:bg-brand-goldHover transition-all gold-border-glow">
         Lihat Portfolio Karya
       </a>
-      <a id="hero-linkedin" href="#" target="_blank" class="px-7 py-3 rounded-full glass-card text-sm font-semibold hover:text-brand-gold transition-all flex items-center gap-2">
+      <a href="https://www.linkedin.com/in/muhammad-rahman-4ba16321a/" target="_blank" class="px-7 py-3 rounded-full glass-card text-sm font-semibold hover:text-brand-gold transition-all flex items-center gap-2">
         <i class="fa-brands fa-linkedin"></i> Profil LinkedIn
       </a>
     </div>
   </section>
-
-  <!-- ADMIN CONTROL BAR -->
-  <div id="admin-bar" class="hidden max-w-7xl mx-auto px-6 mb-8">
-    <div class="p-4 rounded-xl border border-brand-gold/40 bg-brand-gold/10 flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <i class="fa-solid fa-user-shield text-brand-gold text-xl"></i>
-        <div>
-          <h4 class="font-bold text-sm text-brand-gold">Sesi Admin Aktif (Mode Edit)</h4>
-          <p class="text-xs text-gray-400">Anda dapat mengunggah file foto profil, project, dan sertifikat baru.</p>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <button onclick="openAdminPanel('hero')" class="px-4 py-2 rounded-lg bg-brand-gold text-black text-xs font-bold hover:bg-brand-goldHover transition-all">
-          <i class="fa-solid fa-pen-to-square mr-1"></i> Buka CMS Panel
-        </button>
-        <button onclick="logoutAdmin()" class="px-3 py-2 rounded-lg bg-red-500/20 text-red-400 text-xs font-bold hover:bg-red-500/30 transition-all">
-          Logout
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- ABOUT & EDUCATION SECTION -->
   <section id="about" class="py-12 max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="glass-card p-8 rounded-2xl">
         <h3 class="text-xl font-serif font-bold text-white mb-4 gold-gradient-text">Profil Singkat</h3>
-        <p id="about-bio1" class="text-gray-300 text-sm leading-relaxed mb-4"></p>
-        <p id="about-bio2" class="text-gray-300 text-sm leading-relaxed"></p>
+        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+          Lulusan S1 Informatika Universitas Teknokrat Indonesia (IPK 3.72) dengan minat kuat pada <em>Game Development</em>. Berpengalaman mengembangan game edukasi dan aplikasi AR menggunakan Unity, C#, dan Vuforia SDK.
+        </p>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Terampil dalam <em>gameplay programming</em>, implementasi UI, <em>debugging</em>, optimasi performa, serta pengujian kualitas perangkat lunak (QA Testing) dan pengelolaan infrastruktur keamanan jaringan Fortinet.
+        </p>
       </div>
 
       <div class="glass-card p-8 rounded-2xl">
         <h3 class="text-xl font-serif font-bold text-white mb-4 gold-gradient-text">Pendidikan Utama</h3>
         <div class="border-l-2 border-brand-gold/50 pl-4">
-          <h4 id="edu-title" class="font-bold text-white"></h4>
-          <p id="edu-meta" class="text-xs text-brand-gold mt-1"></p>
-          <p class="text-xs text-gray-400 mt-2"><strong>Judul Skripsi:</strong> "<span id="edu-thesis"></span>"</p>
+          <h4 class="font-bold text-white">S1 Informatika - Universitas Teknokrat Indonesia</h4>
+          <p class="text-xs text-brand-gold mt-1">Sep 2021 - Mei 2025 • IPK: 3.72 / 4.00</p>
+          <p class="text-xs text-gray-400 mt-2"><strong>Judul Skripsi:</strong> "Metatekno: Implementasi Gamification pada Metaverse Teknokrat Menggunakan Unity Engine"</p>
+          <p class="text-xs text-gray-500 mt-1"><strong>Fokus Minat:</strong> Game Programming, Android Programming, Web Programming, Computer Networking.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS SECTION (CLICKABLE CARDS) -->
+  <!-- PROJECTS SECTION (CLICKABLE CARDS DIRECT LINK) -->
   <section id="projects" class="py-12 max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-      <div>
-        <h2 class="text-3xl font-serif font-bold gold-gradient-text">Featured Works & Projects</h2>
-        <p class="text-gray-400 text-sm mt-2">Klik pada kartu project untuk melihat detail lengkap dan visualisasi karya.</p>
-      </div>
-      <button id="add-proj-btn" onclick="openAdminPanel('projects')" class="hidden mt-4 md:mt-0 px-4 py-2 rounded-lg bg-brand-gold/20 text-brand-gold border border-brand-gold/40 text-xs font-bold hover:bg-brand-gold hover:text-black transition-all">
-        + Kelola / Tambah Project
-      </button>
+    <div class="mb-12">
+      <h2 class="text-3xl font-serif font-bold gold-gradient-text">Featured Works & Projects</h2>
+      <p class="text-gray-400 text-sm mt-2">Klik pada kartu project untuk membuka link detail / repository secara langsung.</p>
     </div>
 
     <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
   </section>
 
-  <!-- EXPERIENCE & CERTIFICATIONS SECTION -->
+  <!-- EXPERIENCE & ORGANIZATIONS SECTION -->
   <section id="experience" class="py-12 max-w-7xl mx-auto px-6">
     <h2 class="text-3xl font-serif font-bold gold-gradient-text mb-8">Pengalaman Kerja & Organisasi</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Pengalaman Kerja -->
       <div class="space-y-6">
-        <div class="flex items-center justify-between border-b border-brand-border pb-2">
+        <div class="border-b border-brand-border pb-2">
           <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-briefcase text-brand-gold mr-2"></i>Pengalaman Kerja</h3>
         </div>
         <div id="exp-list" class="space-y-4"></div>
       </div>
 
+      <!-- Organisasi -->
       <div class="space-y-6">
-        <div class="flex items-center justify-between border-b border-brand-border pb-2">
-          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-award text-brand-gold mr-2"></i>Sertifikasi (Klik untuk preview)</h3>
+        <div class="border-b border-brand-border pb-2">
+          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-users text-brand-gold mr-2"></i>Pengalaman Organisasi</h3>
         </div>
-        <div id="certs-list" class="glass-card p-6 rounded-xl space-y-3"></div>
-
-        <div class="flex items-center justify-between border-b border-brand-border pb-2 pt-4">
-          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-users text-brand-gold mr-2"></i>Organisasi</h3>
-        </div>
-        <div id="orgs-list" class="glass-card p-6 rounded-xl space-y-3"></div>
+        <div id="orgs-list" class="glass-card p-6 rounded-xl space-y-4"></div>
       </div>
     </div>
+  </section>
+
+  <!-- CERTIFICATIONS SECTION (CLICKABLE CARDS DIRECT LINK) -->
+  <section id="certifications" class="py-12 max-w-7xl mx-auto px-6">
+    <div class="mb-12">
+      <h2 class="text-3xl font-serif font-bold gold-gradient-text">Sertifikasi & Pelatihan</h2>
+      <p class="text-gray-400 text-sm mt-2">Klik pada sertifikat untuk membuka link verifikasi / dokumen resmi secara langsung.</p>
+    </div>
+
+    <div id="certs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
   <!-- CONTACT SECTION -->
@@ -201,734 +185,257 @@
       <p class="text-gray-400 mt-4">Terbuka untuk diskusi proyek, kerja sama, maupun peluang karir baru.</p>
       
       <div class="mt-8 flex flex-wrap justify-center gap-6">
-        <a id="contact-email" href="#" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
-          <i class="fa-regular fa-envelope text-brand-gold"></i> <span></span>
+        <a href="mailto:mrahman.work20@gmail.com" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
+          <i class="fa-regular fa-envelope text-brand-gold"></i> mrahman.work20@gmail.com
         </a>
-        <a id="contact-phone" href="#" target="_blank" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
-          <i class="fa-brands fa-whatsapp text-brand-gold"></i> <span></span>
+        <a href="https://wa.me/6282151199244" target="_blank" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-brand-gold"></i> +62 821-5119-9244
         </a>
-        <span id="contact-location" class="px-6 py-3 rounded-full glass-card text-sm font-medium text-gray-400 flex items-center gap-2">
-          <i class="fa-solid fa-location-dot text-brand-gold"></i> <span></span>
-        </span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Bandar+Lampung,+Indonesia" target="_blank" class="px-6 py-3 rounded-full glass-card text-sm font-medium hover:text-brand-gold transition-all flex items-center gap-2">
+          <i class="fa-solid fa-location-dot text-brand-gold"></i> Bandar Lampung, Indonesia
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- MODAL: PROJECT DETAIL VIEW -->
-  <div id="project-detail-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center px-4">
-    <div class="glass-card max-w-2xl w-full rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
-      <div class="relative h-64 md:h-80 overflow-hidden bg-black/60">
-        <img id="modal-proj-img" src="" class="w-full h-full object-cover">
-        <button onclick="closeProjectDetail()" class="absolute top-4 right-4 bg-black/60 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black transition-all">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <span id="modal-proj-cat" class="absolute bottom-4 left-4 bg-black/70 text-brand-gold text-xs font-semibold px-3 py-1 rounded-full border border-brand-gold/30"></span>
-      </div>
-      <div class="p-6 overflow-y-auto space-y-4">
-        <h3 id="modal-proj-title" class="font-serif font-bold text-2xl text-white"></h3>
-        <p id="modal-proj-desc" class="text-gray-300 text-sm leading-relaxed"></p>
-        
-        <div>
-          <h4 class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-2">Tech Stack / Teknologi</h4>
-          <div id="modal-proj-tech" class="flex flex-wrap gap-2"></div>
-        </div>
-
-        <div id="modal-proj-link-container" class="pt-2"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: CERTIFICATE IMAGE PREVIEW -->
-  <div id="cert-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center px-4" onclick="closeCertModal()">
-    <div class="max-w-3xl w-full p-2 relative" onclick="event.stopPropagation()">
-      <button onclick="closeCertModal()" class="absolute -top-10 right-0 text-white text-xl hover:text-brand-gold">
-        <i class="fa-solid fa-xmark"></i> Tutup
-      </button>
-      <img id="cert-modal-img" src="" class="w-full rounded-xl border border-brand-gold/40 shadow-2xl max-h-[80vh] object-contain mx-auto">
-      <p id="cert-modal-title" class="text-center text-sm text-brand-gold mt-3 font-semibold"></p>
-    </div>
-  </div>
-
-  <!-- MODAL: LOGIN ADMIN -->
-  <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center px-4">
-    <div class="glass-card max-w-sm w-full p-6 rounded-2xl">
-      <div class="flex justify-between items-center mb-6">
-        <h3 class="font-serif font-bold text-lg gold-gradient-text">Verifikasi Admin</h3>
-        <button onclick="closeAuthModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form onsubmit="handleAdminLogin(event)">
-        <div class="mb-4">
-          <label class="block text-xs font-medium text-gray-400 mb-2">Password Admin</label>
-          <input type="password" id="admin-pass-input" placeholder="Masukkan password" required class="w-full bg-black/50 border border-brand-border rounded-lg px-3 py-2 text-sm focus:border-brand-gold focus:outline-none text-white">
-        </div>
-        <button type="submit" class="w-full py-2.5 rounded-lg bg-brand-gold text-black font-bold text-sm hover:bg-brand-goldHover transition-all">
-          Masuk Admin
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL: ADMIN PANEL CMS -->
-  <div id="panel-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center px-4">
-    <div class="glass-card max-w-3xl w-full p-6 rounded-2xl max-h-[90vh] flex flex-col">
-      <div class="flex justify-between items-center mb-4 border-b border-brand-border pb-4">
-        <h3 class="font-serif font-bold text-xl gold-gradient-text"><i class="fa-solid fa-sliders mr-2"></i>Admin CMS Panel</h3>
-        <button onclick="closePanelModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <!-- TABS -->
-      <div class="flex gap-2 border-b border-brand-border pb-3 overflow-x-auto text-xs">
-        <button onclick="switchTab('tab-hero')" class="tab-btn px-4 py-2 rounded-lg bg-brand-gold text-black font-bold" id="btn-tab-hero">Profil & Bio</button>
-        <button onclick="switchTab('tab-projects')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-projects">Kelola Project</button>
-        <button onclick="switchTab('tab-exp')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-exp">Pengalaman & Sertifikat</button>
-        <button onclick="switchTab('tab-contact')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-contact">Kontak</button>
-        <button onclick="switchTab('tab-security')" class="tab-btn px-4 py-2 rounded-lg bg-white/5 text-gray-300 font-medium hover:text-white" id="btn-tab-security"><i class="fa-solid fa-key mr-1"></i>Keamanan</button>
-      </div>
-
-      <!-- TAB CONTENTS -->
-      <div class="overflow-y-auto py-4 space-y-4 text-xs">
-        
-        <!-- TAB 1: HERO & PROFILE PHOTO -->
-        <div id="tab-hero" class="tab-content space-y-4">
-          <div class="p-3 border border-brand-border rounded-xl space-y-3">
-            <h4 class="font-bold text-brand-gold">Foto Profil</h4>
-            <div>
-              <label class="block text-gray-400 mb-1">Upload File Foto Profil (PNG/JPG)</label>
-              <input type="file" id="upload-profile-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
-            </div>
-            <div>
-              <label class="block text-gray-400 mb-1">Atau Masukkan URL Foto Profil</label>
-              <input type="url" id="edit-hero-photo" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-gray-400 mb-1">Badge Status (Hero Top)</label>
-            <input type="text" id="edit-hero-badge" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-gray-400 mb-1">Nama Lengkap</label>
-              <input type="text" id="edit-hero-name" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-            </div>
-            <div>
-              <label class="block text-gray-400 mb-1">Judul / Spesialisasi</label>
-              <input type="text" id="edit-hero-title" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">Deskripsi Singkat (Hero)</label>
-            <textarea id="edit-hero-desc" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">Biografi Paragraf 1</label>
-            <textarea id="edit-about-bio1" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">Biografi Paragraf 2</label>
-            <textarea id="edit-about-bio2" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white"></textarea>
-          </div>
-          <button onclick="saveHeroBio()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Simpan Perubahan Profil & Bio</button>
-        </div>
-
-        <!-- TAB 2: PROJECTS WITH FILE UPLOAD -->
-        <div id="tab-projects" class="tab-content hidden space-y-4">
-          <div class="p-4 border border-brand-gold/30 rounded-xl bg-brand-gold/5">
-            <h4 class="font-bold text-brand-gold mb-3 text-sm">+ Tambah Project Baru</h4>
-            <div class="space-y-3">
-              <input type="text" id="new-proj-title" placeholder="Judul Project" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-              <input type="text" id="new-proj-cat" placeholder="Kategori (misal: 3D Game / AR)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-              
-              <div>
-                <label class="block text-gray-400 mb-1">Upload File Gambar Project (Disarankan)</label>
-                <input type="file" id="upload-proj-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
-              </div>
-              <div>
-                <label class="block text-gray-400 mb-1">Atau Gunakan URL Gambar</label>
-                <input type="url" id="new-proj-img" placeholder="https://..." class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-              </div>
-
-              <textarea id="new-proj-desc" placeholder="Deskripsi Lengkap Project" rows="3" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white"></textarea>
-              <input type="text" id="new-proj-tech" placeholder="Tech Stack (Pisahkan dengan koma)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-              <input type="url" id="new-proj-link" placeholder="Link Demo / GitHub (Opsional)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-              <button onclick="addProject()" class="w-full py-2 bg-brand-gold text-black font-bold rounded-lg">Simpan Project</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB 3: EXPERIENCE, EDUCATION, CERTS -->
-        <div id="tab-exp" class="tab-content hidden space-y-4">
-          <div class="p-3 border border-brand-border rounded-xl space-y-2">
-            <h4 class="font-bold text-white">Data Pendidikan</h4>
-            <input type="text" id="edit-edu-title" placeholder="Gelar & Kampus" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <input type="text" id="edit-edu-meta" placeholder="Tahun & IPK" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <input type="text" id="edit-edu-thesis" placeholder="Judul Skripsi" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <button onclick="saveEdu()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Simpan Pendidikan</button>
-          </div>
-
-          <div class="p-3 border border-brand-border rounded-xl space-y-2">
-            <h4 class="font-bold text-white">+ Tambah Pengalaman Kerja</h4>
-            <input type="text" id="new-exp-title" placeholder="Posisi / Jabatan" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <input type="text" id="new-exp-company" placeholder="Nama Perusahaan & Kota" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <input type="text" id="new-exp-period" placeholder="Periode (misal: Nov 2025 - Aug 2026)" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <textarea id="new-exp-desc" placeholder="Tugas Singkat" rows="2" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white"></textarea>
-            <button onclick="addExperience()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Tambah Pengalaman</button>
-          </div>
-
-          <!-- ADD CERTIFICATION WITH IMAGE UPLOAD -->
-          <div class="p-3 border border-brand-border rounded-xl space-y-2">
-            <h4 class="font-bold text-white">+ Tambah Sertifikasi</h4>
-            <input type="text" id="new-cert-title" placeholder="Nama Sertifikasi" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            <input type="text" id="new-cert-issuer" placeholder="Penerbit & Tahun" class="w-full bg-black/50 border border-brand-border rounded-lg p-2 text-white">
-            
-            <div>
-              <label class="block text-gray-400 mb-1">Upload Bukti Sertifikat (Gambar/Foto)</label>
-              <input type="file" id="upload-cert-file" accept="image/*" class="w-full text-gray-300 bg-black/50 border border-brand-border rounded-lg p-2 text-xs">
-            </div>
-            
-            <button onclick="addCert()" class="w-full py-1.5 bg-brand-gold text-black font-bold rounded">Tambah Sertifikasi</button>
-          </div>
-        </div>
-
-        <!-- TAB 4: CONTACT -->
-        <div id="tab-contact" class="tab-content hidden space-y-4">
-          <div>
-            <label class="block text-gray-400 mb-1">Email</label>
-            <input type="email" id="edit-contact-email" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">Nomor HP / WhatsApp</label>
-            <input type="text" id="edit-contact-phone" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">Lokasi Domisili</label>
-            <input type="text" id="edit-contact-loc" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-          </div>
-          <div>
-            <label class="block text-gray-400 mb-1">URL LinkedIn</label>
-            <input type="url" id="edit-contact-linkedin" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-          </div>
-          <button onclick="saveContact()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Simpan Kontak</button>
-        </div>
-
-        <!-- TAB 5: SECURITY -->
-        <div id="tab-security" class="tab-content hidden space-y-4">
-          <div class="p-4 border border-brand-border rounded-xl space-y-3">
-            <h4 class="font-bold text-white text-sm"><i class="fa-solid fa-key text-brand-gold mr-1"></i> Ubah Password Admin</h4>
-            <div>
-              <label class="block text-gray-400 mb-1">Password Lama</label>
-              <input type="password" id="pass-old" placeholder="Masukkan password lama" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-            </div>
-            <div>
-              <label class="block text-gray-400 mb-1">Password Baru</label>
-              <input type="password" id="pass-new" placeholder="Masukkan password baru" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-            </div>
-            <div>
-              <label class="block text-gray-400 mb-1">Konfirmasi Password Baru</label>
-              <input type="password" id="pass-confirm" placeholder="Ulangi password baru" class="w-full bg-black/50 border border-brand-border rounded-lg p-2.5 text-white">
-            </div>
-            <button onclick="changeAdminPassword()" class="w-full py-2.5 bg-brand-gold text-black font-bold rounded-lg hover:bg-brand-goldHover">Update Password Sekarang</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPT LOGIC (SECURITY, UPLOAD FILE, DYNAMIC CMS) -->
+  <!-- SCRIPT LOGIC (STATIC DATA) -->
   <script>
-    // Utility: XSS Sanitizer
-    function escapeHTML(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-
-    // Utility: Convert File to Base64
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-      });
-    }
-
-    // SHA-256 Crypto API
-    async function hashString(str) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(str);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    // Initial Data
-    const initialSiteData = {
-      hero: {
-        photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-        badge: 'S1 Informatika (IPK 3.72) • Unity & Network Security',
-        name: 'Muhammad Rahman',
-        title: 'Game Developer & IT Security Specialist',
-        desc: 'Lulusan S1 Informatika Universitas Teknokrat Indonesia dengan keahlian dalam pengembangan Game 3D/AR interaktif menggunakan Unity Engine serta pengelolaan keamanan jaringan Fortinet.',
-        linkedin: 'https://www.linkedin.com/in/muhammad-rahman-4ba16321a/'
-      },
-      about: {
-        bio1: 'Memiliki keahlian unggul dalam gameplay programming, UI implementation, debugging, dan optimasi performa game pada platform Android & PC.',
-        bio2: 'Berpengalaman pula dalam pengujian kualitas perangkat lunak (QA Testing) di Nusameta serta manajemen infrastruktur jaringan & firewall Fortinet di PT Info Solusindo Data Utama.',
-        eduTitle: 'S1 Informatika - Universitas Teknokrat Indonesia',
-        eduMeta: 'Sep 2021 - Mei 2025 • IPK: 3.72 / 4.00',
-        thesis: 'Metatekno: Implementasi Gamification pada Metaverse Teknokrat Menggunakan Unity Engine'
-      },
-      contact: {
-        email: 'mrahman.work20@gmail.com',
-        phone: '+62 821-5119-9244',
-        waLink: 'https://wa.me/6282151199244',
-        location: 'Bandar Lampung, Indonesia'
-      },
+    const staticData = {
       projects: [
         {
-          id: '1',
-          title: 'Sandi Aksara 3D Game',
-          category: '3D Educational Game',
-          image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
-          description: 'Game edukasi 3D interaktif pengenalan aksara Jawa. Dilengkapi Quest System, Trace Line & Drag-and-Drop Puzzle, serta Save Progress dengan PlayerPrefs.',
-          tech: ['Unity 3D', 'C#', 'UI Architecture'],
-          link: 'https://github.com'
+          title: 'Sandi Aksara - 3D Educational Game',
+          category: 'Game Developer',
+          period: 'Jun 2026 - Jul 2026',
+          image: 'assets/projects/sandi-aksara.jpg',
+          description: 'Game edukasi 3D berbasis Unity & C# untuk mengenalkan Aksara Jawa dan warisan budaya. Mengimplementasikan Quest System, Puzzle System (Trace Line & Drag-and-Drop), Score Management, Save Progress (PlayerPrefs), dan integrasi audio.',
+          tech: ['Unity 3D', 'C#', 'UI Flow', 'PlayerPrefs'],
+          link: 'https://drive.google.com/drive/folders/1Pnp4L6dJ3cIRJjfHrGOKWKCVII7UknYL?usp=sharing' // Ubah sesuai link Anda
         },
         {
-          id: '2',
           title: 'Ido & Adi: Penjaga Pesisir',
-          category: 'Game Dev (PT Bukit Asam Tbk)',
-          image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80',
-          description: 'Aplikasi game edukasi konservasi mangrove hasil kolaborasi CoE Metaverse dengan PT Bukit Asam Tbk.',
-          tech: ['Unity', 'C#', 'Android Optimization'],
-          link: ''
+          category: 'Unity Programmer (PT Bukit Asam Tbk)',
+          period: 'Agu 2025 - Sep 2025',
+          image: 'assets/projects/ido-adi.jpg',
+          description: 'Mengembangkan mekanik gameplay, sistem UI interaktif, dan animasi karakter menggunakan Unity untuk edukasi mangrove. Hasil kolaborasi COE Metaverse dengan PT Bukit Asam Tbk.',
+          tech: ['Unity Engine', 'C#', '3D Asset Integration', 'Android Optimization'],
+          link: 'https://drive.google.com/drive/folders/1oKfEfWo6SOWPYbXi1h0f4BWgf4YDH6Xe?usp=sharing'
         },
         {
-          id: '3',
           title: 'Sepakbola AR App',
           category: 'Augmented Reality',
-          image: 'https://images.unsplash.com/photo-1579952318891-2147743322db?auto=format&fit=crop&w=800&q=80',
-          description: 'Aplikasi AR interaktif untuk mengeksplorasi elemen 3D sepakbola melalui kamera smartphone.',
-          tech: ['Unity', 'Vuforia SDK', 'C#'],
-          link: ''
-        }
+          period: 'Jul 2025 - Agu 2025',
+          image: 'assets/projects/sepakbola-ar.jpg',
+          description: 'Aplikasi Augmented Reality interaktif berbasis Unity & Vuforia SDK yang memungkinkan pengguna berinteraksi dengan elemen 3D sepak bola melalui kamera ponsel.',
+          tech: ['Unity', 'Vuforia SDK', 'C#', 'Image Tracking'],
+          link: 'https://drive.google.com/drive/folders/1Pe9ny8VeqfvNwjgp4_4ff7zOXbI5seN4?usp=sharing'
+        },
+        {
+          title: 'Traditional Game AR',
+          category: 'Augmented Reality',
+          period: 'Feb 2025 - Mar 2025',
+          image: 'assets/projects/traditional-game-ar.jpg',
+          description: 'Aplikasi AR menampilkan permainan tradisional Indonesia dalam bentuk 3D interaktif dan Video Player menggunakan Vuforia SDK untuk image recognition.',
+          tech: ['Unity', 'Vuforia SDK', '3D Animation', 'Video Player'],
+          link: 'https://drive.google.com/drive/folders/1mhQCwdb12jdkqYpl0Us7C743vT8vNOf4?usp=sharing'
+        },
       ],
       experiences: [
         {
-          id: 'e1',
-          period: 'Jun 2026 - Jul 2026',
-          title: 'Game Developer',
-          company: 'Sandi Aksara - Bandar Lampung',
-          desc: 'Mengembangkan game edukasi 3D pengenalan Aksara Jawa menggunakan Unity & C#, mengimplementasikan Quest System, Puzzle System, serta save progress.'
-        },
-        {
-          id: 'e2',
-          period: 'Nov 2025 - Agu 2026',
+          period: 'Nov 2025 - Aug 2026',
           title: 'EOS IT Network Security',
-          company: 'PT Info Solusindo Data Utama (Contract) - Kanwil BRI Lampung',
-          desc: 'Mengelola perangkat keras keamanan Fortinet, konfigurasi firewall, VPN, serta menjaga stabilitas operasional jaringan.'
+          company: 'PT Info Solusindo Data Utama (Contract) - Jakarta / Kanwil BRI Lampung',
+          desc: 'Mengelola dan memelihara perangkat keras keamanan Fortinet untuk Kantor Wilayah BRI Lampung, konfigurasi firewall & VPN, serta menjaga stabilitas operasional jaringan.'
         },
         {
-          id: 'e3',
           period: 'Des 2024 - Apr 2025',
           title: 'Programmer Intern (QA Testing)',
-          company: 'Nusameta (PT Metaverse Indonesia Makmur)',
-          desc: 'Melakukan pengujian manual fitur Visual Script Nodes di platform NusaStudio, identifikasi bug, serta pembuatan dokumentasi pengujian.'
+          company: 'PT Metaverse Indonesia Makmur (Nusameta) - Remote',
+          desc: 'Melakukan pengujian manual pada fitur Nodes Visual Script di platform NusaStudio untuk memastikan fungsionalitas, kemudahan penggunaan, dan mendokumentasikan bug.'
+        },
+        {
+          period: 'Feb 2024 - Jun 2024',
+          title: 'Kampus Mengajar',
+          company: 'SD Muhammadiyah 3 Panjang - Bandar Lampung',
+          desc: 'Mengembangkan media sosial & konten digital interaktif sekolah serta memfasilitasi kegiatan pembelajaran kreatif siswa.'
+        }
+      ],
+      organizations: [
+        {
+          title: 'Vice Chairman - Center Of Excellence Metaverse',
+          period: 'Juli 2024 - Mei 2025 • Universitas Teknokrat Indonesia',
+          desc: 'Memimpin riset dan pengembangan proyek berbasis metaverse/game serta membangun kolaborasi dengan dosen dan mitra eksternal.'
+        },
+        {
+          title: 'Vice Chairman - Himpunan Mahasiswa Informatika (HIMA)',
+          period: 'Jan 2024 - Feb 2025 • Universitas Teknokrat Indonesia',
+          desc: 'Mengelola, menganalisis, dan memvisualisasikan data organisasi untuk evaluasi kegiatan dan perencanaan strategis himpunan.'
         }
       ],
       certifications: [
-        { id: 'c1', title: 'Fortinet Certified Associate in Cybersecurity', issuer: 'Fortinet Training Institute (Dec 2025 - Dec 2027)', image: 'https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=800&q=80' },
-        { id: 'c2', title: 'Senior Game Developer', issuer: 'Universitas Teknokrat Indonesia (Juli 2024)', image: '' },
-        { id: 'c3', title: 'Junior AR/VR Developer', issuer: 'Universitas Teknokrat Indonesia (Februari 2024)', image: '' }
-      ],
-      organizations: [
-        { id: 'o1', title: 'Wakil Ketua - Pusat Unggulan Metaverse (JuaraMeta)', period: 'Juli 2024 - Mei 2025 • Universitas Teknokrat Indonesia' },
-        { id: 'o2', title: 'Wakil Ketua - HIMA Informatika', period: 'Jan 2024 - Feb 2025 • Universitas Teknokrat Indonesia' }
+        {
+          title: 'TOEFL Prediction Test (Skor: 573)',
+          issuer: 'Brighten English',
+          date: '10 Agustus 2026',
+          image: 'assets/certifications/toefl.jpg',
+          link: 'https://drive.google.com/file/d/1-Q2lNpvruB4zEJ3ZYpFmi2UuzvGoAtAZ/view?usp=sharing' // Ganti link resmi sertifikat Anda
+        },
+        {
+          title: 'Fortinet Certified Associate in Cybersecurity',
+          issuer: 'Fortinet Training Institute',
+          date: '3 Dec 2025 - 3 Dec 2027',
+          image: 'assets/certifications/fortinet.jpg',
+          link: 'https://drive.google.com/drive/folders/1lUD6Z1QiZl6ZSnssZar0Y6azDMo_fQVh?usp=sharing'
+        },
+        {
+          title: 'Certificate of MikroTik Training',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '24 Maret 2025',
+          image: 'assets/certifications/mikrotik.jpg',
+          link: 'https://drive.google.com/file/d/1uoYiij8oYPqdENhVnCKb1Pd3zHtY1zgC/view?usp=sharing'
+        },
+        {
+          title: 'Certificate of Competency for Computer Network and Troubleshooting',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '19 Agustus 2025',
+          image: 'assets/certifications/network-troubleshooting.jpg',
+          link: 'https://drive.google.com/file/d/1-xOGludWFbnMBF1vYIMGxGhbKEhEuFsX/view?usp=sharing'
+        },
+        {
+          title: 'Certificate of Competency for Graphic Design',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '07 Juni 2025',
+          image: 'assets/certifications/graphic-design.jpg',
+          link: 'https://drive.google.com/file/d/13DrDuJ-G-sBxmC2ghpbEObR7onGIfJ1V/view?usp=sharing'
+        },
+        {
+          title: 'Certificate of Competency for Office Administration',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '07 Mei 2025',
+          image: 'assets/certifications/office-administration.jpg',
+          link: 'https://drive.google.com/file/d/1RbP0xwSzefGlmPBlL358lP85TmyL27rB/view?usp=sharing'
+        },
+        {
+          title: 'Senior Game Developer',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '6 Juli 2024',
+          image: 'assets/certifications/senior-game-dev.jpg',
+          link: 'https://drive.google.com/file/d/1gayAR5Z5cZITTog0_RAdQvltX0nDKUnQ/view?usp=sharing'
+        },
+        {
+          title: 'Basic Artificial Intelligence',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '6 Juli 2024',
+          image: 'assets/certifications/basic-ai.jpg',
+          link: 'https://drive.google.com/file/d/1Ea0gXKlEmQPHSEZUAnUTS9Ih_ZaKzk83/view?usp=sharing'
+        },
+        {
+          title: 'Junior AR/VR Developer',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '10 Februari 2024',
+          image: 'assets/certifications/junior-ar-vr.jpg',
+          link: 'https://drive.google.com/file/d/1VQlRUiMybzebM5PMyGHZpt6NyWBBofQr/view?usp=sharing'
+        },
+        {
+          title: 'Senior Mobile Programming and Firebase',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '23 September 2023',
+          image: 'assets/certifications/mobile-firebase.jpg',
+          link: 'https://drive.google.com/file/d/1PZzauIctYLOvHCGXvUPGMIH3YgGV5q-k/view?usp=sharing'
+        },
+        {
+          title: 'Senior Web Application Using a Framework',
+          issuer: 'Universitas Teknokrat Indonesia',
+          date: '23 September 2023',
+          image: 'assets/certifications/web-framework.jpg',
+          link: 'https://drive.google.com/file/d/1cklh16rwLiFRuCltp1Lyg59hbHBrREAK/view?usp=sharing'
+        }
       ]
     };
 
-    let siteData = {};
-    let isAdmin = false;
-    let failedAttempts = 0;
-    let lockUntil = 0;
-    const SESSION_DURATION = 2 * 60 * 60 * 1000;
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      if (!localStorage.getItem('rahman_admin_hash')) {
-        const initialHash = await hashString("r#hm#n29");
-        localStorage.setItem('rahman_admin_hash', initialHash);
-      }
-
-      const saved = localStorage.getItem('rahman_cms_full_data');
-      if (saved) {
-        siteData = JSON.parse(saved);
-      } else {
-        siteData = initialSiteData;
-        saveData();
-      }
-
-      checkAdminStatus();
-      renderAll();
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProjects();
+      renderExperiences();
+      renderOrganizations();
+      renderCertifications();
     });
 
-    function saveData() {
-      localStorage.setItem('rahman_cms_full_data', JSON.stringify(siteData));
-    }
-
-    async function createSessionToken() {
-      const expireAt = Date.now() + SESSION_DURATION;
-      const currentHash = localStorage.getItem('rahman_admin_hash');
-      localStorage.setItem('rahman_admin_session_token', JSON.stringify({ expireAt, hash: currentHash }));
-    }
-
-    function isSessionValid() {
-      const tokenStr = localStorage.getItem('rahman_admin_session_token');
-      if (!tokenStr) return false;
-      try {
-        const token = JSON.parse(tokenStr);
-        if (Date.now() > token.expireAt) { logoutAdmin(); return false; }
-        return token.hash === localStorage.getItem('rahman_admin_hash');
-      } catch (e) { return false; }
-    }
-
-    // Render Functions
-    function renderAll() {
-      // Photo Profile & Hero
-      document.getElementById('hero-photo').src = siteData.hero.photo || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
-      document.getElementById('nav-logo').innerText = escapeHTML(siteData.hero.name.split(' ')[1] ? siteData.hero.name.split(' ')[1].toUpperCase() + '.' : siteData.hero.name.toUpperCase() + '.');
-      document.getElementById('hero-badge').innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span> ${escapeHTML(siteData.hero.badge)}`;
-      document.getElementById('hero-name').innerText = siteData.hero.name;
-      document.getElementById('hero-title').innerText = siteData.hero.title;
-      document.getElementById('hero-desc').innerText = siteData.hero.desc;
-      document.getElementById('hero-linkedin').href = escapeHTML(siteData.hero.linkedin);
-
-      // About
-      document.getElementById('about-bio1').innerText = siteData.about.bio1;
-      document.getElementById('about-bio2').innerText = siteData.about.bio2;
-      document.getElementById('edu-title').innerText = siteData.about.eduTitle;
-      document.getElementById('edu-meta').innerText = siteData.about.eduMeta;
-      document.getElementById('edu-thesis').innerText = siteData.about.thesis;
-
-      // Contact
-      document.getElementById('contact-email').querySelector('span').innerText = siteData.contact.email;
-      document.getElementById('contact-email').href = `mailto:${escapeHTML(siteData.contact.email)}`;
-      document.getElementById('contact-phone').querySelector('span').innerText = siteData.contact.phone;
-      document.getElementById('contact-phone').href = escapeHTML(siteData.contact.waLink);
-      document.getElementById('contact-location').querySelector('span').innerText = siteData.contact.location;
-
-      // Clickable Projects Grid
-      const projGrid = document.getElementById('projects-grid');
-      projGrid.innerHTML = siteData.projects.map(p => `
-        <div onclick="openProjectDetail('${p.id}')" class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between cursor-pointer">
+    // Render Projects (Wrapped in Anchor Link)
+    function renderProjects() {
+      const grid = document.getElementById('projects-grid');
+      grid.innerHTML = staticData.projects.map(p => `
+        <a href="${p.link}" target="_blank" class="glass-card rounded-2xl overflow-hidden group flex flex-col justify-between hover:border-brand-gold transition-all duration-300">
           <div>
-            <div class="relative h-48 overflow-hidden">
-              <img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-              <span class="absolute top-3 left-3 bg-black/70 text-brand-gold text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full border border-brand-gold/30">${escapeHTML(p.category)}</span>
-              ${isAdmin ? `<button onclick="event.stopPropagation(); deleteProject('${p.id}')" class="absolute top-3 right-3 bg-red-600/80 text-white p-2 rounded-full hover:bg-red-600 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
+            <div class="relative h-48 overflow-hidden bg-black/40">
+              <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'">
+              <span class="absolute top-3 left-3 bg-black/70 text-brand-gold text-[10px] font-semibold uppercase px-2.5 py-1 rounded-full border border-brand-gold/30">${p.category}</span>
+              <span class="absolute top-3 right-3 bg-black/70 text-gray-300 text-[10px] px-2 py-1 rounded-full">${p.period}</span>
             </div>
             <div class="p-6">
-              <h3 class="font-serif font-bold text-xl text-white group-hover:text-brand-gold transition-colors">${escapeHTML(p.title)}</h3>
-              <p class="text-gray-400 text-xs mt-2 leading-relaxed line-clamp-3">${escapeHTML(p.description)}</p>
+              <h3 class="font-serif font-bold text-xl text-white group-hover:text-brand-gold transition-colors flex items-center justify-between">
+                ${p.title}
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-brand-gold opacity-0 group-hover:opacity-100 transition-opacity"></i>
+              </h3>
+              <p class="text-gray-400 text-xs mt-2 leading-relaxed line-clamp-3">${p.description}</p>
             </div>
           </div>
           <div class="px-6 pb-6 pt-0">
             <div class="flex flex-wrap gap-1.5 mb-4">
-              ${p.tech.map(t => `<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded">${escapeHTML(t)}</span>`).join('')}
+              ${p.tech.map(t => `<span class="bg-white/5 border border-white/10 text-gray-300 text-[10px] px-2 py-0.5 rounded">${t}</span>`).join('')}
             </div>
-            <span class="text-xs font-semibold text-brand-gold flex items-center gap-1">
-              Buka Detail Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            <span class="text-xs font-semibold text-brand-gold flex items-center gap-1 group-hover:underline">
+              Lihat Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </span>
           </div>
-        </div>
+        </a>
       `).join('');
+    }
 
-      // Experiences
+    // Render Experiences
+    function renderExperiences() {
       const expList = document.getElementById('exp-list');
-      expList.innerHTML = siteData.experiences.map(e => `
-        <div class="glass-card p-6 rounded-xl relative">
-          ${isAdmin ? `<button onclick="deleteExp('${e.id}')" class="absolute top-3 right-3 text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
-          <span class="text-[10px] bg-brand-gold/10 text-brand-gold px-2.5 py-1 rounded-full font-semibold">${escapeHTML(e.period)}</span>
-          <h4 class="font-bold text-white mt-2">${escapeHTML(e.title)}</h4>
-          <p class="text-xs text-gray-400">${escapeHTML(e.company)}</p>
-          <p class="text-xs text-gray-300 mt-2 leading-relaxed">${escapeHTML(e.desc)}</p>
+      expList.innerHTML = staticData.experiences.map(e => `
+        <div class="glass-card p-6 rounded-xl">
+          <span class="text-[10px] bg-brand-gold/10 text-brand-gold px-2.5 py-1 rounded-full font-semibold">${e.period}</span>
+          <h4 class="font-bold text-white mt-2">${e.title}</h4>
+          <p class="text-xs text-gray-400">${e.company}</p>
+          <p class="text-xs text-gray-300 mt-2 leading-relaxed">${e.desc}</p>
         </div>
       `).join('');
+    }
 
-      // Certifications
-      const certsList = document.getElementById('certs-list');
-      certsList.innerHTML = siteData.certifications.map(c => `
-        <div class="flex items-start justify-between gap-3 p-2 rounded-lg ${c.image ? 'hover:bg-white/5 cursor-pointer' : ''}" onclick="${c.image ? `openCertModal('${c.id}')` : ''}">
-          <div class="flex items-start gap-3">
-            <i class="fa-solid fa-certificate text-brand-gold mt-1"></i>
-            <div>
-              <h5 class="text-sm font-bold text-white flex items-center gap-2">
-                ${escapeHTML(c.title)}
-                ${c.image ? '<i class="fa-solid fa-image text-xs text-brand-gold" title="Ada bukti sertifikat"></i>' : ''}
-              </h5>
-              <p class="text-xs text-gray-400">${escapeHTML(c.issuer)}</p>
+    // Render Organizations
+    function renderOrganizations() {
+      const orgsList = document.getElementById('orgs-list');
+      orgsList.innerHTML = staticData.organizations.map(o => `
+        <div>
+          <h5 class="text-sm font-bold text-white">${o.title}</h5>
+          <p class="text-xs text-brand-gold mt-0.5">${o.period}</p>
+          <p class="text-xs text-gray-300 mt-1">${o.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    // Render Certifications Grid (Wrapped in Anchor Link)
+    function renderCertifications() {
+      const grid = document.getElementById('certs-grid');
+      grid.innerHTML = staticData.certifications.map(c => `
+        <a href="${c.link}" target="_blank" class="glass-card rounded-xl overflow-hidden group flex flex-col justify-between hover:border-brand-gold transition-all duration-300">
+          <div>
+            <div class="relative h-36 overflow-hidden bg-black/40">
+              <img src="${c.image}" alt="${c.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?auto=format&fit=crop&w=800&q=80'">
+              <span class="absolute top-2 right-2 bg-black/70 text-brand-gold text-[10px] px-2 py-0.5 rounded-full border border-brand-gold/30"><i class="fa-solid fa-link mr-1"></i> Verifikasi</span>
+            </div>
+            <div class="p-4">
+              <h4 class="font-bold text-sm text-white group-hover:text-brand-gold transition-colors leading-snug">${c.title}</h4>
+              <p class="text-xs text-gray-400 mt-1">${c.issuer}</p>
             </div>
           </div>
-          ${isAdmin ? `<button onclick="event.stopPropagation(); deleteCert('${c.id}')" class="text-red-400 hover:text-red-300 text-xs"><i class="fa-solid fa-trash"></i></button>` : ''}
-        </div>
+          <div class="px-4 pb-4 pt-0 flex justify-between items-center text-[11px] text-gray-500">
+            <span>${c.date}</span>
+            <span class="text-brand-gold font-semibold group-hover:underline">Buka Sertifikat <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></span>
+          </div>
+        </a>
       `).join('');
-
-      // Organizations
-      const orgsList = document.getElementById('orgs-list');
-      orgsList.innerHTML = siteData.organizations.map(o => `
-        <div>
-          <h5 class="text-sm font-bold text-white">${escapeHTML(o.title)}</h5>
-          <p class="text-xs text-gray-400">${escapeHTML(o.period)}</p>
-        </div>
-      `).join('');
-    }
-
-    // Modal Project Detail
-    function openProjectDetail(id) {
-      const proj = siteData.projects.find(p => p.id === id);
-      if (!proj) return;
-
-      document.getElementById('modal-proj-img').src = proj.image;
-      document.getElementById('modal-proj-cat').innerText = proj.category;
-      document.getElementById('modal-proj-title').innerText = proj.title;
-      document.getElementById('modal-proj-desc').innerText = proj.description;
-      
-      const techContainer = document.getElementById('modal-proj-tech');
-      techContainer.innerHTML = proj.tech.map(t => `<span class="bg-white/10 border border-white/20 text-white text-xs px-3 py-1 rounded-full">${escapeHTML(t)}</span>`).join('');
-
-      const linkContainer = document.getElementById('modal-proj-link-container');
-      if (proj.link) {
-        linkContainer.innerHTML = `<a href="${escapeHTML(proj.link)}" target="_blank" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-brand-gold text-black font-bold text-xs hover:bg-brand-goldHover transition-all">Buka Demo / Link Repository <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
-      } else {
-        linkContainer.innerHTML = `<span class="text-xs text-gray-500 italic">Dokumentasi / Repository Internal</span>`;
-      }
-
-      document.getElementById('project-detail-modal').classList.remove('hidden');
-    }
-
-    function closeProjectDetail() {
-      document.getElementById('project-detail-modal').classList.add('hidden');
-    }
-
-    // Modal Certificate Preview
-    function openCertModal(id) {
-      const cert = siteData.certifications.find(c => c.id === id);
-      if (!cert || !cert.image) return;
-
-      document.getElementById('cert-modal-img').src = cert.image;
-      document.getElementById('cert-modal-title').innerText = cert.title;
-      document.getElementById('cert-modal').classList.remove('hidden');
-    }
-
-    function closeCertModal() {
-      document.getElementById('cert-modal').classList.add('hidden');
-    }
-
-    // Admin Security & Auth
-    async function handleAdminLogin(e) {
-      e.preventDefault();
-      if (Date.now() < lockUntil) {
-        alert('Terlalu banyak percoban gagal. Silakan tunggu.');
-        return;
-      }
-
-      const inputPass = document.getElementById('admin-pass-input').value;
-      const inputHash = await hashString(inputPass);
-
-      if (inputHash === localStorage.getItem('rahman_admin_hash')) {
-        failedAttempts = 0;
-        isAdmin = true;
-        await createSessionToken();
-        checkAdminStatus();
-        closeAuthModal();
-        document.getElementById('admin-pass-input').value = '';
-        renderAll();
-      } else {
-        failedAttempts++;
-        if (failedAttempts >= 5) {
-          lockUntil = Date.now() + 30000;
-          alert('Terkunci 30 detik.');
-        } else alert(`Password Salah! (Sisa: ${5 - failedAttempts})`);
-      }
-    }
-
-    function checkAdminStatus() {
-      isAdmin = isSessionValid();
-      document.getElementById('admin-bar').classList.toggle('hidden', !isAdmin);
-      document.getElementById('add-proj-btn').classList.toggle('hidden', !isAdmin);
-      document.getElementById('admin-btn-text').innerText = isAdmin ? 'Logout Admin' : 'Admin Login';
-    }
-
-    function logoutAdmin() {
-      isAdmin = false;
-      localStorage.removeItem('rahman_admin_session_token');
-      checkAdminStatus();
-      renderAll();
-    }
-
-    function openAdminAuth() {
-      if (isAdmin) logoutAdmin();
-      else document.getElementById('auth-modal').classList.remove('hidden');
-    }
-    function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
-
-    // CMS Panel Controls
-    function openAdminPanel(tab) {
-      document.getElementById('edit-hero-photo').value = siteData.hero.photo || '';
-      document.getElementById('edit-hero-badge').value = siteData.hero.badge;
-      document.getElementById('edit-hero-name').value = siteData.hero.name;
-      document.getElementById('edit-hero-title').value = siteData.hero.title;
-      document.getElementById('edit-hero-desc').value = siteData.hero.desc;
-      document.getElementById('edit-about-bio1').value = siteData.about.bio1;
-      document.getElementById('edit-about-bio2').value = siteData.about.bio2;
-
-      document.getElementById('edit-edu-title').value = siteData.about.eduTitle;
-      document.getElementById('edit-edu-meta').value = siteData.about.eduMeta;
-      document.getElementById('edit-edu-thesis').value = siteData.about.thesis;
-
-      document.getElementById('edit-contact-email').value = siteData.contact.email;
-      document.getElementById('edit-contact-phone').value = siteData.contact.phone;
-      document.getElementById('edit-contact-loc').value = siteData.contact.location;
-      document.getElementById('edit-contact-linkedin').value = siteData.hero.linkedin;
-
-      switchTab('tab-' + tab);
-      document.getElementById('panel-modal').classList.remove('hidden');
-    }
-
-    function closePanelModal() { document.getElementById('panel-modal').classList.add('hidden'); }
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(el => {
-        el.classList.remove('bg-brand-gold', 'text-black', 'font-bold');
-        el.classList.add('bg-white/5', 'text-gray-300');
-      });
-
-      document.getElementById(tabId).classList.remove('hidden');
-      const btn = document.getElementById('btn-' + tabId);
-      if (btn) {
-        btn.classList.add('bg-brand-gold', 'text-black', 'font-bold');
-        btn.classList.remove('bg-white/5', 'text-gray-300');
-      }
-    }
-
-    // CMS Save Handlers with File Upload Support
-    async function saveHeroBio() {
-      const profileFile = document.getElementById('upload-profile-file').files[0];
-      if (profileFile) {
-        siteData.hero.photo = await fileToBase64(profileFile);
-      } else if (document.getElementById('edit-hero-photo').value) {
-        siteData.hero.photo = document.getElementById('edit-hero-photo').value;
-      }
-
-      siteData.hero.badge = document.getElementById('edit-hero-badge').value;
-      siteData.hero.name = document.getElementById('edit-hero-name').value;
-      siteData.hero.title = document.getElementById('edit-hero-title').value;
-      siteData.hero.desc = document.getElementById('edit-hero-desc').value;
-      siteData.about.bio1 = document.getElementById('edit-about-bio1').value;
-      siteData.about.bio2 = document.getElementById('edit-about-bio2').value;
-
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    async function addProject() {
-      const projFile = document.getElementById('upload-proj-file').files[0];
-      let imageUrl = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80';
-
-      if (projFile) {
-        imageUrl = await fileToBase64(projFile);
-      } else if (document.getElementById('new-proj-img').value) {
-        imageUrl = document.getElementById('new-proj-img').value;
-      }
-
-      siteData.projects.unshift({
-        id: Date.now().toString(),
-        title: document.getElementById('new-proj-title').value,
-        category: document.getElementById('new-proj-cat').value,
-        image: imageUrl,
-        description: document.getElementById('new-proj-desc').value,
-        tech: document.getElementById('new-proj-tech').value.split(','),
-        link: document.getElementById('new-proj-link').value
-      });
-
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    async function addCert() {
-      const certFile = document.getElementById('upload-cert-file').files[0];
-      let certImg = '';
-
-      if (certFile) {
-        certImg = await fileToBase64(certFile);
-      }
-
-      siteData.certifications.unshift({
-        id: Date.now().toString(),
-        title: document.getElementById('new-cert-title').value,
-        issuer: document.getElementById('new-cert-issuer').value,
-        image: certImg
-      });
-
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    function saveEdu() {
-      siteData.about.eduTitle = document.getElementById('edit-edu-title').value;
-      siteData.about.eduMeta = document.getElementById('edit-edu-meta').value;
-      siteData.about.thesis = document.getElementById('edit-edu-thesis').value;
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    function saveContact() {
-      siteData.contact.email = document.getElementById('edit-contact-email').value;
-      siteData.contact.phone = document.getElementById('edit-contact-phone').value;
-      siteData.contact.waLink = `https://wa.me/${document.getElementById('edit-contact-phone').value.replace(/[^0-9]/g, '')}`;
-      siteData.contact.location = document.getElementById('edit-contact-loc').value;
-      siteData.hero.linkedin = document.getElementById('edit-contact-linkedin').value;
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    function addExperience() {
-      siteData.experiences.unshift({
-        id: Date.now().toString(),
-        title: document.getElementById('new-exp-title').value,
-        company: document.getElementById('new-exp-company').value,
-        period: document.getElementById('new-exp-period').value,
-        desc: document.getElementById('new-exp-desc').value
-      });
-      saveData(); renderAll(); closePanelModal();
-    }
-
-    function deleteProject(id) {
-      if (confirm('Hapus project ini?')) { siteData.projects = siteData.projects.filter(p => p.id !== id); saveData(); renderAll(); }
-    }
-    function deleteExp(id) {
-      if (confirm('Hapus pengalaman ini?')) { siteData.experiences = siteData.experiences.filter(e => e.id !== id); saveData(); renderAll(); }
-    }
-    function deleteCert(id) {
-      if (confirm('Hapus sertifikasi ini?')) { siteData.certifications = siteData.certifications.filter(c => c.id !== id); saveData(); renderAll(); }
-    }
-
-    async function changeAdminPassword() {
-      const oldP = document.getElementById('pass-old').value;
-      const newP = document.getElementById('pass-new').value;
-      const confirmP = document.getElementById('pass-confirm').value;
-
-      const oldHash = await hashString(oldP);
-      if (oldHash !== localStorage.getItem('rahman_admin_hash')) { alert('Password Lama Salah!'); return; }
-      if (newP.length < 6) { alert('Password minimal 6 karakter!'); return; }
-      if (newP !== confirmP) { alert('Konfirmasi password tidak cocok!'); return; }
-
-      const newHash = await hashString(newP);
-      localStorage.setItem('rahman_admin_hash', newHash);
-      await createSessionToken();
-      alert('Password Admin Berhasil Diperbarui!');
-      closePanelModal();
     }
   </script>
 </body>
