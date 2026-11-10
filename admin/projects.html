@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Rahman Portfolio Admin</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Styling elemen daftar proyek yang dibuat oleh JavaScript */
+        .project-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .project-item img {
+            width: 100px;
+            height: 80px;
+            flex-shrink: 0;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f3f4f6;
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .project-info h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .project-info p {
+            margin-top: 5px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-actions button {
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 7px;
+            padding: 4px 9px;
+            border-radius: 20px;
+            background: #f3f4f6;
+            color: #4b5563;
+            font-size: 11px;
+        }
+
+        .status.published {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        @media (max-width: 640px) {
+            .project-item {
+                flex-wrap: wrap;
+                align-items: flex-start;
+            }
+
+            .project-item img {
+                width: 80px;
+                height: 70px;
+            }
+
+            .project-actions {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="min-h-screen md:flex">
+
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-gray-950 text-white p-6 flex-shrink-0">
+
+            <h1 class="text-xl font-bold mb-8">
+                RAHMAN<span class="text-yellow-500">.</span>
+            </h1>
+
+            <nav class="space-y-2 text-sm">
+
+                <a href="index.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Dashboard
+                </a>
+
+                <a href="projects.html"
+                   class="block p-3 rounded bg-gray-800 text-yellow-400">
+                    Projects
+                </a>
+
+                <a href="experiences.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Experiences
+                </a>
+
+                <a href="certifications.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Certifications
+                </a>
+
+                <a href="organizations.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Organizations
+                </a>
+
+                <a href="messages.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Messages
+                </a>
+
+                <button id="logoutButton"
+                    class="w-full text-left p-3 rounded text-red-400 hover:bg-gray-800 mt-8">
+                    Logout
+                </button>
+
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 p-5 md:p-10">
+
+            <!-- Header -->
+            <header class="mb-8">
+                <h2 class="text-2xl font-bold">Manage Projects</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Tambah dan kelola proyek yang tampil di portfolio.
+                </p>
+            </header>
+
+            <!-- Alert / Form Message -->
+            <div id="alert"
+                 class="hidden mb-5 p-4 rounded-lg text-sm">
+            </div>
+
+            <!-- Project Form Heading -->
+            <section class="bg-white rounded-xl shadow-sm p-5 mb-6">
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg">Manajemen Project</h3>
+                        <p class="text-gray-500 text-sm mt-1">
+                            Tambahkan proyek baru atau perbarui proyek yang sudah ada.
+                        </p>
+                    </div>
+
+                    <button id="addProjectButton"
+                        class="bg-gray-950 text-white px-5 py-3 rounded-lg hover:bg-gray-800 text-sm font-semibold">
+                        + Tambah Project
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Project Form -->
+            <section id="projectFormPanel"
+                class="hidden bg-white rounded-xl shadow-sm p-5 mb-6">
+
+                <h3 id="formTitle" class="font-bold text-lg mb-5">
+                    Tambah Project
+                </h3>
+
+                <form id="projectForm">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <div>
+                            <label for="title" class="block text-sm font-semibold mb-2">
+                                Nama Project *
+                            </label>
+                            <input id="title"
+                                required
+                                maxlength="120"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="slug" class="block text-sm font-semibold mb-2">
+                                Slug *
+                            </label>
+                            <input id="slug"
+                                required
+                                maxlength="140"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                            <small class="text-gray-500 text-xs mt-1 block">
+                                Contoh: sandi-aksara
+                            </small>
+                        </div>
+
+                        <div>
+                            <label for="category" class="block text-sm font-semibold mb-2">
+                                Kategori
+                            </label>
+                            <input id="category"
+                                placeholder="Educational Game"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="role" class="block text-sm font-semibold mb-2">
+                                Peran
+                            </label>
+                            <input id="role"
+                                placeholder="Unity Developer"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="description" class="block text-sm font-semibold mb-2">
+                                Deskripsi
+                            </label>
+                            <textarea id="description"
+                                rows="4"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="technologies" class="block text-sm font-semibold mb-2">
+                                Teknologi
+                            </label>
+                            <input id="technologies"
+                                placeholder="Unity, C#, Vuforia"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                            <small class="text-gray-500 text-xs mt-1 block">
+                                Pisahkan setiap teknologi dengan koma.
+                            </small>
+                        </div>
+
+                        <div>
+                            <label for="projectUrl" class="block text-sm font-semibold mb-2">
+                                Project URL
+                            </label>
+                            <input id="projectUrl"
+                                type="url"
+                                placeholder="https://..."
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="repositoryUrl" class="block text-sm font-semibold mb-2">
+                                Repository URL
+                            </label>
+                            <input id="repositoryUrl"
+                                type="url"
+                                placeholder="https://github.com/..."
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="projectImage" class="block text-sm font-semibold mb-2">
+                                Gambar Project
+                            </label>
+                            <input id="projectImage"
+                                type="file"
+                                accept="image/png,image/jpeg,image/webp"
+                                class="w-full border rounded-lg p-3 text-sm">
+                            <small class="text-gray-500 text-xs mt-1 block">
+                                Format JPG, PNG, atau WebP. Maksimal 5 MB.
+                            </small>
+                        </div>
+
+                        <div>
+                            <label for="sortOrder" class="block text-sm font-semibold mb-2">
+                                Urutan Tampil
+                            </label>
+                            <input id="sortOrder"
+                                type="number"
+                                min="0"
+                                value="0"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-3">
+                                Status
+                            </label>
+
+                            <div class="flex flex-wrap gap-5">
+
+                                <label class="flex items-center gap-2 text-sm">
+                                    <input id="isPublished"
+                                        type="checkbox"
+                                        checked
+                                        class="accent-yellow-500">
+                                    Publikasikan
+                                </label>
+
+                                <label class="flex items-center gap-2 text-sm">
+                                    <input id="isFeatured"
+                                        type="checkbox"
+                                        class="accent-yellow-500">
+                                    Featured
+                                </label>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 mt-6">
+
+                        <button type="submit"
+                            id="saveButton"
+                            class="bg-gray-950 text-white px-5 py-3 rounded-lg hover:bg-gray-800 text-sm font-semibold">
+                            Simpan Project
+                        </button>
+
+                        <button type="button"
+                            id="cancelButton"
+                            class="border border-gray-300 px-5 py-3 rounded-lg hover:bg-gray-100 text-sm font-semibold">
+                            Batal
+                        </button>
+
+                    </div>
+
+                    <p id="formMessage"
+                       role="status"
+                       class="text-gray-500 text-sm mt-4">
+                    </p>
+
+                </form>
+            </section>
+
+            <!-- Project List -->
+            <section class="bg-white rounded-xl shadow-sm p-5">
+
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-5">
+                    <h3 class="font-bold text-lg">Daftar Project</h3>
+                </div>
+
+                <div id="projectList" class="space-y-4">
+                </div>
+
+                <p id="listMessage"
+                   role="status"
+                   class="text-gray-500 text-sm mt-4">
+                    Memuat proyek...
+                </p>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="../js/admin-projects.js"></script>
+
+</body>
+</html>

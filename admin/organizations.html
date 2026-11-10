@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizations | Rahman Portfolio Admin</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .organization-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .organization-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .organization-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .organization-info h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .organization-info p {
+            margin-top: 6px;
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .item-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .item-actions button {
+            padding: 8px 12px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .status {
+            display: inline-block;
+            margin-top: 9px;
+            padding: 4px 9px;
+            border-radius: 20px;
+            background: #f3f4f6;
+            color: #4b5563;
+            font-size: 11px;
+        }
+
+        .status.published {
+            background: #dcfce7;
+            color: #166534;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="min-h-screen md:flex">
+
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-gray-950 text-white p-6 flex-shrink-0">
+
+            <h1 class="text-xl font-bold mb-8">
+                RAHMAN<span class="text-yellow-500">.</span>
+            </h1>
+
+            <nav class="space-y-2 text-sm">
+
+                <a href="index.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Dashboard
+                </a>
+
+                <a href="projects.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Projects
+                </a>
+
+                <a href="experiences.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Experiences
+                </a>
+
+                <a href="certifications.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Certifications
+                </a>
+
+                <a href="organizations.html"
+                   class="block p-3 rounded bg-gray-800 text-yellow-400">
+                    Organizations
+                </a>
+
+                <a href="messages.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Messages
+                </a>
+
+                <button id="logoutBtn"
+                    class="w-full text-left p-3 rounded text-red-400 hover:bg-gray-800 mt-8">
+                    Logout
+                </button>
+
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 p-5 md:p-10">
+
+            <!-- Header -->
+            <header class="mb-8">
+                <h2 class="text-2xl font-bold">Manage Organizations</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Kelola pengalaman organisasi dan kepemimpinan.
+                </p>
+            </header>
+
+            <!-- Alert -->
+            <div id="alert"
+                hidden
+                class="mb-5 p-4 rounded-lg text-sm">
+            </div>
+
+            <!-- Heading and Add Button -->
+            <section class="bg-white rounded-xl shadow-sm p-5 mb-6">
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+                    <div>
+                        <h3 class="font-bold text-lg">
+                            Organizational Experience
+                        </h3>
+
+                        <p class="text-gray-500 text-sm mt-1">
+                            Tambahkan dan kelola pengalaman organisasi.
+                        </p>
+                    </div>
+
+                    <button id="addButton"
+                        class="bg-gray-950 text-white px-5 py-3 rounded-lg hover:bg-gray-800 text-sm font-semibold">
+                        + Tambah Organisasi
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Organization Form -->
+            <section id="formPanel"
+                hidden
+                class="bg-white rounded-xl shadow-sm p-5 mb-6">
+
+                <h3 id="formTitle" class="font-bold text-lg mb-5">
+                    Tambah Organisasi
+                </h3>
+
+                <form id="organizationForm">
+
+                    <input type="hidden" id="organizationId">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                        <div>
+                            <label for="title" class="block text-sm font-semibold mb-2">
+                                Jabatan / Posisi *
+                            </label>
+
+                            <input id="title"
+                                required
+                                maxlength="150"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="organization" class="block text-sm font-semibold mb-2">
+                                Nama Organisasi *
+                            </label>
+
+                            <input id="organization"
+                                required
+                                maxlength="150"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="startDate" class="block text-sm font-semibold mb-2">
+                                Tanggal Mulai
+                            </label>
+
+                            <input type="date"
+                                id="startDate"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div>
+                            <label for="endDate" class="block text-sm font-semibold mb-2">
+                                Tanggal Selesai
+                            </label>
+
+                            <input type="date"
+                                id="endDate"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label for="description" class="block text-sm font-semibold mb-2">
+                                Deskripsi / Kontribusi
+                            </label>
+
+                            <textarea id="description"
+                                rows="4"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400"
+                                placeholder="Jelaskan tanggung jawab dan kontribusi Anda dalam organisasi..."></textarea>
+                        </div>
+
+                        <div class="flex items-center">
+                            <label class="flex items-center gap-2 text-sm">
+                                <input type="checkbox"
+                                    id="isPublished"
+                                    checked
+                                    class="accent-yellow-500">
+                                Publikasikan
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="sortOrder" class="block text-sm font-semibold mb-2">
+                                Urutan Tampil
+                            </label>
+
+                            <input type="number"
+                                id="sortOrder"
+                                min="0"
+                                value="0"
+                                class="w-full border rounded-lg p-3 text-sm outline-none focus:ring-2 focus:ring-yellow-400">
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 mt-6">
+
+                        <button id="submitBtn"
+                            type="submit"
+                            class="bg-gray-950 text-white px-5 py-3 rounded-lg hover:bg-gray-800 text-sm font-semibold">
+                            Simpan
+                        </button>
+
+                        <button id="cancelBtn"
+                            type="button"
+                            class="border border-gray-300 px-5 py-3 rounded-lg hover:bg-gray-100 text-sm font-semibold">
+                            Batal
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- Organization List -->
+            <section class="bg-white rounded-xl shadow-sm p-5">
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
+
+                    <h3 class="font-bold text-lg">
+                        Daftar Organizations
+                    </h3>
+
+                    <span id="totalCount" class="text-gray-500 text-sm">
+                        0 data
+                    </span>
+
+                </div>
+
+                <div id="organizationList" class="organization-list">
+                    <p class="text-gray-500 text-sm">
+                        Memuat data...
+                    </p>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="../js/admin-organizations.js"></script>
+
+</body>
+</html>

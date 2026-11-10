@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Rahman Portfolio Admin</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="min-h-screen md:flex">
+
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-gray-950 text-white p-6 flex-shrink-0">
+
+            <h1 class="text-xl font-bold mb-8">
+                RAHMAN<span class="text-yellow-500">.</span>
+            </h1>
+
+            <nav class="space-y-2 text-sm">
+
+                <a href="index.html"
+                   class="block p-3 rounded bg-gray-800 text-yellow-400">
+                    Dashboard
+                </a>
+
+                <a href="projects.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Projects
+                </a>
+
+                <a href="experiences.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Experiences
+                </a>
+
+                <a href="certifications.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Certifications
+                </a>
+
+                <a href="organizations.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Organizations
+                </a>
+
+                <a href="messages.html"
+                   class="block p-3 rounded hover:bg-gray-800">
+                    Messages
+                </a>
+
+                <button id="logoutButton"
+                    class="w-full text-left p-3 rounded text-red-400 hover:bg-gray-800 mt-8">
+                    Logout
+                </button>
+
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 min-w-0 p-5 md:p-10">
+
+            <!-- Header -->
+            <header class="mb-8">
+                <h2 class="text-2xl font-bold">Dashboard</h2>
+                <p class="text-gray-500 text-sm mt-1">
+                    Kelola konten personal portfolio kamu dari sini.
+                </p>
+            </header>
+
+            <!-- Welcome -->
+            <section class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 id="welcomeName" class="text-xl font-bold">
+                    Welcome, Admin!
+                </h2>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    Selamat datang di halaman administrasi portfolio Muhammad Rahman.
+                    Kelola proyek, pengalaman, sertifikasi, dan pesan pengunjung melalui dashboard ini.
+                </p>
+            </section>
+
+            <!-- Statistics -->
+            <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+
+                <div class="bg-white rounded-xl p-5 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Projects</p>
+                    <h3 id="totalProjects"
+                        class="text-2xl font-bold mt-2">
+                        -
+                    </h3>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Experiences</p>
+                    <h3 id="totalExperiences"
+                        class="text-2xl font-bold mt-2">
+                        -
+                    </h3>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Certifications</p>
+                    <h3 id="totalCertifications"
+                        class="text-2xl font-bold mt-2">
+                        -
+                    </h3>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm">
+                    <p class="text-gray-500 text-sm">Total Messages</p>
+                    <h3 id="totalMessages"
+                        class="text-2xl font-bold mt-2">
+                        -
+                    </h3>
+                </div>
+
+            </section>
+
+            <!-- Quick Management -->
+            <section class="bg-white rounded-xl shadow-sm p-5">
+
+                <div class="mb-5">
+                    <h3 class="font-bold text-lg">Quick Management</h3>
+                    <p class="text-gray-500 text-sm mt-1">
+                        Akses cepat untuk mengelola konten portfolio.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                    <a href="projects.html"
+                       class="block border rounded-xl p-5 hover:border-yellow-400 transition">
+                        <h4 class="font-bold">Manage Projects</h4>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Tambah, edit, hapus, dan atur publikasi proyek portfolio.
+                        </p>
+                        <span class="inline-block text-sm font-semibold text-yellow-600 mt-4">
+                            Kelola Projects →
+                        </span>
+                    </a>
+
+                    <a href="experiences.html"
+                       class="block border rounded-xl p-5 hover:border-yellow-400 transition">
+                        <h4 class="font-bold">Manage Experiences</h4>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Kelola pengalaman kerja dan riwayat profesional.
+                        </p>
+                        <span class="inline-block text-sm font-semibold text-yellow-600 mt-4">
+                            Kelola Experiences →
+                        </span>
+                    </a>
+
+                    <a href="certifications.html"
+                       class="block border rounded-xl p-5 hover:border-yellow-400 transition">
+                        <h4 class="font-bold">Manage Certifications</h4>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Kelola sertifikasi, pelatihan, dan pencapaian.
+                        </p>
+                        <span class="inline-block text-sm font-semibold text-yellow-600 mt-4">
+                            Kelola Certifications →
+                        </span>
+                    </a>
+
+                    <a href="organizations.html"
+                       class="block border rounded-xl p-5 hover:border-yellow-400 transition">
+                        <h4 class="font-bold">Manage Organizations</h4>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Kelola pengalaman dan riwayat organisasi.
+                        </p>
+                        <span class="inline-block text-sm font-semibold text-yellow-600 mt-4">
+                            Kelola Organizations →
+                        </span>
+                    </a>
+
+                    <a href="messages.html"
+                       class="block border rounded-xl p-5 hover:border-yellow-400 transition">
+                        <h4 class="font-bold">Manage Messages</h4>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Lihat dan kelola pesan yang dikirim pengunjung portfolio.
+                        </p>
+                        <span class="inline-block text-sm font-semibold text-yellow-600 mt-4">
+                            Kelola Messages →
+                        </span>
+                    </a>
+
+                </div>
+
+                <p id="dashboardMessage" class="text-gray-500 text-sm mt-5">
+                    Memuat data dashboard...
+                </p>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="../js/admin-dashboard.js"></script>
+
+</body>
+</html>

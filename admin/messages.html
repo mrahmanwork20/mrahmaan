@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages | Rahman Portfolio Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div class="min-h-screen md:flex">
+    <aside class="w-full md:w-64 bg-gray-950 text-white p-6">
+      <h1 class="text-xl font-bold mb-8">RAHMAN<span class="text-yellow-500">.</span></h1>
+      <nav class="space-y-2 text-sm">
+        <a href="index.html" class="block p-3 rounded hover:bg-gray-800">Dashboard</a>
+        <a href="projects.html" class="block p-3 rounded hover:bg-gray-800">Projects</a>
+        <a href="experiences.html" class="block p-3 rounded hover:bg-gray-800">Experiences</a>
+        <a href="certifications.html" class="block p-3 rounded hover:bg-gray-800">Certifications</a>
+        <a href="organizations.html" class="block p-3 rounded hover:bg-gray-800">Organizations</a>
+        <a href="messages.html" class="block p-3 rounded bg-gray-800 text-yellow-400">Messages</a>
+        <button id="logoutBtn" class="w-full text-left p-3 rounded text-red-400 hover:bg-gray-800 mt-8">
+          Logout
+        </button>
+      </nav>
+    </aside>
+
+    <main class="flex-1 p-5 md:p-10">
+      <header class="mb-8">
+        <h2 class="text-2xl font-bold">Messages</h2>
+        <p class="text-gray-500 text-sm mt-1">Kelola pesan dari pengunjung portfolio.</p>
+      </header>
+
+      <div id="alert" class="hidden mb-5 p-4 rounded-lg text-sm"></div>
+
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <p class="text-gray-500 text-sm">Total Pesan</p>
+          <h3 id="totalMessages" class="text-2xl font-bold mt-2">0</h3>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <p class="text-gray-500 text-sm">Unread</p>
+          <h3 id="unreadMessages" class="text-2xl font-bold text-red-600 mt-2">0</h3>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <p class="text-gray-500 text-sm">Read</p>
+          <h3 id="readMessages" class="text-2xl font-bold text-blue-600 mt-2">0</h3>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm">
+          <p class="text-gray-500 text-sm">Replied</p>
+          <h3 id="repliedMessages" class="text-2xl font-bold text-green-600 mt-2">0</h3>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm p-5 mb-6">
+        <div class="flex flex-col md:flex-row gap-3">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Cari nama, email, atau subjek..."
+            class="flex-1 border rounded-lg p-3 outline-none focus:ring-2 focus:ring-yellow-400"
+          >
+
+          <select id="statusFilter" class="border rounded-lg p-3">
+            <option value="all">Semua Status</option>
+            <option value="unread">Unread</option>
+            <option value="read">Read</option>
+            <option value="replied">Replied</option>
+            <option value="archived">Archived</option>
+          </select>
+
+          <button id="refreshBtn"
+            class="bg-gray-950 text-white px-5 py-3 rounded-lg hover:bg-gray-800">
+            Refresh
+          </button>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-sm p-5">
+        <div class="flex justify-between items-center mb-5">
+          <h3 class="font-bold text-lg">Daftar Pesan</h3>
+          <span id="resultCount" class="text-sm text-gray-500">0 pesan</span>
+        </div>
+
+        <div id="messageList" class="space-y-4">
+          <p class="text-gray-500 text-sm">Memuat pesan...</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal Detail Pesan -->
+  <div id="messageModal"
+    class="hidden fixed inset-0 bg-black/60 z-50 p-4 items-center justify-center">
+    <div class="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6">
+      <div class="flex justify-between items-start gap-4 mb-5">
+        <h3 class="text-xl font-bold">Detail Pesan</h3>
+        <button id="closeModal" class="text-gray-500 hover:text-black text-2xl">&times;</button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <p class="text-xs text-gray-500">Nama</p>
+          <p id="detailName" class="font-medium"></p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500">Email</p>
+          <p id="detailEmail" class="font-medium break-all"></p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500">Subjek</p>
+          <p id="detailSubject" class="font-medium"></p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500">Tanggal</p>
+          <p id="detailDate" class="font-medium"></p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500 mb-2">Isi Pesan</p>
+          <div id="detailMessage"
+            class="bg-gray-50 border rounded-lg p-4 whitespace-pre-wrap break-words text-sm"></div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        <button id="replyBtn"
+          class="bg-green-700 text-white px-4 py-2 rounded-lg text-sm">
+          Tandai Replied
+        </button>
+        <button id="readBtn"
+          class="bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+          Tandai Read
+        </button>
+        <button id="archiveBtn"
+          class="bg-gray-700 text-white px-4 py-2 rounded-lg text-sm">
+          Archive
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/admin-messages.js"></script>
+</body>
+</html>
